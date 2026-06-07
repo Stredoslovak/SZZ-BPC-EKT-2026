@@ -1,0 +1,949 @@
+% !TeX root = statnicaEKT.tex
+% !TeX spellcheck = cs_CZ
+\part{BPC-MKO - Mobilní komunikace}
+\begin{huge}
+	Otázky:
+	\newline
+\end{huge}
+\begin{enumerate}
+	\item Otázka - Blokové schéma digitálního radiokomunikačního systému, popis bloků, přenosová kapacita systému.
+	\item Otázka - Základní způsoby zpracování signálů v systémech mobilních komunikací (zdrojové kódování, kanálové kódování, prokládání a digitální modulace)
+	\item Otázka - Systémy s mnohonásobným přístupem a metody multiplexování, proces rozprostírání signálu, výhody a nevýhody jednotlivých přístupů
+	\item Otázka - Způsoby přenosu (simplex, duplex) a typy spojování (komutované a paketové), diverzitní příjem, diverzitní systémy
+	\item Otázka - Struktura obecné buňkové sítě a její hlavní výhody, procedura "handover" a její různé typy
+	\item Otázka - Základní architektura a vlastnosti systémů GSM, GPRS, EDGE, UMTS
+	\item Otázka - Systém LTE, základní architektura a popis systému LTE, rozdíly mezi LTE a LTE-A
+	\item Otázka - Systém LTE, základní popis E-UTRA Downlink a Uplink a rodzíly mezi nimi, základní popis systémů LTE-CAT, NB-IoT
+	\item Otázka - Systémy WLAN (základní popis standardu IEEE 802.11 a definice fyzické vrstvy) a WPAN (základní popis, systém Bluetooth a topologie sítě Bluetooth)
+	\item Otázka - Systém LPWAN (základní popis, IoT, systémy LoRa a SigFox)
+\end{enumerate}
+\newpage
+\chapter{První otázka}
+\section{Blokové schéma digitálního radiokomunikačního systému}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/1. otazka/radiokomSystem"}
+	\caption{Blokové schéma digitálního radiokomunikačního systému}
+	\label{fig:radiokomsystem}
+\end{figure}
+\begin{itemize}
+	\item \textbf{Zdroj signálu} - převede informaci na elektrický signál
+	\begin{itemize}
+		\item např. mikrofon
+	\end{itemize}
+	\item \textbf{Převod A/D} (pokud je vstupní signál analogový)
+	\item \textbf{Kodér zdroje}
+	\begin{itemize}
+		\item Kompresí potlačuje redundandní (nadbytečné) a irelevantní (zbytečné) složky v signálu
+		\item Použití při přenosu hovorových a přenosových signálů $\rightarrow$ nižší bitová rychlost
+	\end{itemize}
+	\item \textbf{Kodér kanálu}
+	\begin{itemize}
+		\item potlačuje chyby při přenosu zvýšením redundance
+		\item součástí bývá prokládání (viz KS1) - zabezpečení signálu proti shluku chyb
+	\end{itemize}
+	\item \textbf{Modulátor}
+	\begin{itemize}
+		\item modulace na vysokofrekvenční nosnou vlnu (amplitudové ASK, fázové PSK, frekvenční FSK klíčování, M-QAM modulace)
+	\end{itemize}
+	\item \textbf{Rádiové prostředí} - prostředí pro přenos
+	\begin{itemize}
+		\item k signálu se cestou přičítá šum, vzniká mezisymbolová interference ISI (viz KS1)
+	\end{itemize}
+	\item \textbf{Demodulátor}
+	\begin{itemize}
+		\item převedení z VF zpět ndo základního pásma
+		\item extrahování dat původního signálu z nosné vlny
+	\end{itemize}
+	\item \textbf{Dekodér kanálu}
+	\begin{itemize}
+		\item detekuje a opravuje chyby (způsobené průchodem radiového prostředí)
+	\end{itemize}
+	\item \textbf{Dekodér zdroje}
+	\begin{itemize}
+		\item dekomprese dat diferenčním DPCM
+		\item Hybridní kódování (predikce+transformace+kvantování+entropické kódování)
+	\end{itemize}
+	\item \textbf{D/A převod}
+	\begin{itemize}
+		\item rekonstrukce z diskrétních vzorků do spojité podoby
+	\end{itemize}
+	\item \textbf{Příjem - Koncový stupeň}
+	\begin{itemize}
+		\item např. reporoduktor
+	\end{itemize}
+\end{itemize}
+\newpage
+\section{Přenosová kapacita systému}
+Maximální teoretická rychlost, jakou lze bezchybně přenášet data kanálem za přítomnosti šumu.
+Závisí na:
+\begin{itemize}
+	\item přidělené šířce pásma kanálu (B)
+	\item poměru výkonu signálu ku šumu S/N
+\end{itemize}
+\begin{equation}
+	C = B \cdot \log_2\left(1 + \frac{S}{N}\right)\,[\mathrm{bit/s}]
+\end{equation}
+
+\chapter{Druhá otázka}
+\section{Základní způsoby zpracování signálů v systémech mobilních komunikací}
+\subsection{Zdrojové kódování - Komprese}
+Provádíme za účelem odstranění (u řeči, zvuku, obrazu, videu):
+\begin{itemize}
+	\item Redundance (nadbytečná data) - data, co se opakují/lze je odvodit od ostatních; vratný proces, \underline{bezztrátová komprese}
+	\item Irelevance (zbytečná data) - data, která lidské smysly nedokáží vnímat, nebo nejsou důležité; nevratný proces \underline{ztrátová komprese}
+\end{itemize}
+Výsledkem je snížení přenosové rychlosti signálu (měnší šířka pásma přenos. k.)
+Např.: MPEG, MP3, JPEG, PCM/DPCM\\
+
+Kompresní poměr \textbf{CR} - pro posouzení zdrojového kódování
+\begin{equation}
+	CR = \frac{R_{\mathrm{vst}}}{R_{\mathrm{vyst}}}\,[-]
+\end{equation}
+\[R_{\mathrm{vst}} \text{ je přenosová rychlost na vstupu kóderu zdroje } [\mathrm{bit/s}],\]
+\[R_{\mathrm{vyst}} \text{ je přenosová rychlost na výstupu kóderu zdroje } [\mathrm{bit/s}],\]
+
+Zdrojové kódování tvrau vlny: pulzní modulace (PCM), diferenční modulace (DPCM)
+\begin{itemize}
+	\item Pulzní kódová PCM - analogový signál se: vzorkuje, kvantuje, každý vzorek se zakóduje do bitů
+	\item Diferenční pulzní kódová DPCM - nepřenáší se celý vzorek, ale jen rozdíl mezi aktuálním vzorkem a jeho predikovanou hodnotou z předchozího vzorku
+	\item Delta DM - přenáší pouze rozdíl, jestli se signál zvýšil/snížil oproti předchozímu vzorku (pouze 2 úrovně)
+	\item Adaptivní delta ADM - princip DM, ale s proměnným kvantizačním krokem podle strmosti signálu (lépe sleduje rychlé změny)
+	\item Adaptivní diferenční pulzní kódová ADPCM - princip DPCM, ale s adaptivním kvantováním i adaptivní predikcí (stejná kvalita jako PCM, při nižším datovém toku)
+\end{itemize}
+
+\subsection{Kanálové kódování}
+Provádíme za účelem zvýšení odolnosti signálu proti chybám v přenosovém kanálu:
+\begin{itemize}
+	\item přidáním redundance pro detekci nebo opravu chyb
+\end{itemize}
+Např.: RS, LDPC; doplněné prokládáním
+
+\subsection{Prokládání}
+Ochrana signálu proti skupinovým chybám
+\begin{itemize}
+	\item Vysílač (kodér)
+	\begin{itemize}
+		\item 1) zpráva zakódovaná běžným kodérem
+		\item 2) zápis zakódované zprávy do amtice M \textbf{po řádcích}
+		\item 3) čtení symbolů \textbf{po sloupcích}
+		\item 4) takto přeskládané symboly se vyšlou anténou
+	\end{itemize}
+	\item Přijímač (dekodér)
+	\begin{itemize}
+		\item 5) zápis přijatých symbolů opět \textbf{do sloupců} (rekonstrukce matice M)
+		\item 6) čtení symbolů přijaté zprávy z matice M \textbf{po řádcích} $\rightarrow$ [přeskládání opět do původní podoby]
+		\item 7) oprava případných chyb jednoduchými dekodéry
+	\end{itemize}
+\end{itemize}
+Parametry prokládání:\\
+\textit{Hloubka prokládání:} čím větší, tím delší shluk chybb dokáže systém eliminovat\\
+\textit{Rámec vnějšího kódu:} udává počet bitů, pokterých se budou opakovat chybné bity
+
+\subsection{Digitální modulace}
+Proces, při kterém se digitální signál přenáší změnou parametrů nosné vlny.\\
+Takto změněná nosná je anténou vysílače odeslána k přijímači.\\
+\textbf{Obálka:} pomyslná křivka spojující vrcholky amplitud vysílané nosné vlny
+\begin{itemize}
+	\item \underline{lineární modulace:} proměnná obálka (informace skryta ve změnách amplitudy - AM, ASK)
+	\item \underline{nelineární modulace:} konstantní obálka (informace skryta ve změnách frekvence nebo fáze - FM, PM, FSK, PSK)
+\end{itemize}
+Změna parametrů:
+\begin{itemize}
+	\item \textbf{ASK}: mění se skokově \textbf{amplituda} nosné vlny ("Amplitude Shift Keying")
+	\item \textbf{PSK}: mění se skokově \textbf{fáze} nosné vlny ("Phase Shift Keying")
+	\item \textbf{FSK}: mění se skokově \textbf{frekvence} nosné vlny ("Frequency Shift Keying")
+	\item \textbf{QAM}: kombinuje současnou změnu \textbf{amplitudy} i \textbf{fáze}. Dokáže přenášet nezávislé signály n1, n2 stejným kanálem ("Kvadraturní AM")\\
+\end{itemize}
+Vícestavová modulace: 
+\begin{equation}
+	{M = 2^n},
+\end{equation}
+(\textit{M}: počet stavů nosné; \textit{n}: počet bitů jednoho slova)\\
+
+\underline{\textbf{Modulace QPSK:}} 4 stavová fázová modulace
+\begin{itemize}
+	\item Každý fázový stav představuje jeden dibit (00, 01, 10, 11)
+	\item Realizace složením dvou fázově posunutých BPSK
+	\item Modulátor vytváří \textit{sin} větve Q a \textit{cos} větve I $\rightarrow$ vlny jsou fázově posunuté o 90°: 45°, 135°, -135°, -45°
+	\item teoreticky by mělo jít o nelineární modulaci, v praxi ale vzniká parazitní amplitudová modulace při průchochodu středem diagramu (fázový posun o 180°)
+	\item Oproti BPSK přenáší QPSK 2 bity na 1 symbol při stejné šířce pásma
+	\item Změna stavu obou bitů jednoho symbolu ve stejný okamžik
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\linewidth]{"Obrazky/MKO/2. otazka/qpsk"}
+	\caption{Vektorový diagram modulace QPSK}
+	\label{fig:qpsk}
+\end{figure}
+\newpage
+\underline{\textbf{Modulace O-QPSK:}} 4 stavová fázová modulace
+\begin{itemize}
+	\item časové zpoždění mezi změnami obou bitů $\rightarrow$ není průchod nulou
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\linewidth]{"Obrazky/MKO/2. otazka/oqpsk"}
+	\caption{Vektorový diagram modulace O-QPSK}
+	\label{fig:oqpsk}
+\end{figure}
+
+
+\underline{\textbf{Modulace $\pi/4$-QPSK:}} 8 stavová fázová modulace
+\begin{itemize}
+	\item používá 2 QPSK diagramy pootočené o 45°
+	\item nenastane průchod 0 (posuv o 180°)
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\linewidth]{"Obrazky/MKO/2. otazka/pi4qpsk"}
+	\caption{Vektorový diagram modulace $\pi/4$-QPSK}
+	\label{fig:pi4qpsk}
+\end{figure}
+
+
+\underline{\textbf{Modulace MSK:}} 2 stavová frekvenční modulace ("Minimum shift keying")
+\begin{itemize}
+	\item změna fáze NENÍ skoková jako u předešlých modulací
+	\item oba stavy nejsou od sebe fázově vzdáleny o 180° jako u BPSK, ale při přechodu se plynule mění o 90°
+	\item "minimum": minimální frekvenční rozestup, při kterém jsou oba stavy ortogonální(pravoúhlý), aby se přenos dal rozlišit
+\end{itemize}
+
+\chapter{Třetí otázka}
+\section{Systémy s mnohonásobným přístupem}
+Princip: více nezávislých uživatelů odesílá k jednomu společnému médiu (např.: mobilní systém s mnoha uživateli)
+\begin{itemize}
+	\item FDMA (Freq Division Multiple Access): rozdělení kmitočtového pásma na jendotlivé kanály $\rightarrow$ každý uživatel dostane přidělenou svou vlastní frekvenci
+	\item TDMA (Time Division Multiple Access): všichni uživatelé vysílají na stejné frekvenci, ale střídají se v čase $\rightarrow$ uživatelovi se přidělí krátký časový úsek, rychle se odešle zpráva a uživatel poté čeká na další kolo přidělování
+	\item CDMA (Code Division Multiple Access): všichni uživatelé vysílají na stejné frekvenci i ve stejném čase; data jsou šifrována unikátními klíči 
+	\item ALOHA: data se odešlou kdykoliv; pokud se 2 signály "srazí", vysílači přijde potvrzení o nepřijetí a data se odešlou znovu s náhodným časovým zpožděním znovu
+\end{itemize}
+
+\section{Metody multiplexování}
+Princip: z jednoho bodu se odesílá více různých signálů do jednoho radiového kanálu (např.: rádio s mnoha stanicemi)
+\begin{itemize}
+	\item FDM (kmitočtový multiplex): rozdělení jednoho kanálu na několik frekvenčních pásem; signály se odesílají současně, ale každý na jiné frekvenci
+	\begin{description}
+		\item[$\oplus$] není nutná časová synchronizace, vhodné pro spojité signály
+		\item[$\circleddash$] horší využití pásma kvůli ochranným intervalům, vyžaduje filtry
+	\end{description}
+	\item TDM (časový multiplex): všichni uživatelé používají stejný kanál, ale ne ve stejnou dobu; každý má přiřazen vlastní časový interval
+	\begin{description}
+		\item[$\oplus$] lepší využití kanálu než FDM (každý uživatel dostane celý kanál)
+		\item[$\circleddash$] přesná sycnhronizace (může vznikat zpoždění)
+	\end{description} 
+	\item CDM (kódový multiplex): všichni uživatelé vysílají ve stejném čase i pásmu, ale každý pomocí jiného kódu
+	\begin{description}	
+		\item[$\oplus$] více uživatel sdílí stejné pásmo současně
+		\item[$\circleddash$] složité zpracování, při vyšším počtu uživatel roste vzájemné rušení
+	\end{description}
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\linewidth]{"Obrazky/MKO/3. otazka/multiplexovani"}
+	\caption{Multiplexování v rekvenční, časové a kódové doméně}
+	\label{fig:multiplexovani}
+\end{figure}
+
+\section{Proces rozprostírání signálu a výhody/nevýhody}
+Jev typický pro CDMA. Užitečný signál se násobí rozprostíracím šumovým kódem $\rightarrow$ umělé zvětšení šířky pásma a výkon se rozloží do širšího spektra. Na přijímači se stejný kód použije pro zpětné zúžení.\\
+Důvody použití:
+\begin{itemize}
+	\item Potlačení úzkopásmového rušení
+	\item Odolnost proti odposlechu a rušení
+	\item Více uživatelů v jednom spektru
+\end{itemize}
+
+\chapter{Čtvrtá otázka}
+\section{Způsoby přenosu}
+\subsection{Simplex - jednosměrný přenos}
+Jeden konec vysílač, druhý přijímač.\\
+Bez možnosti otočení směru.\\ 
+Např.: TV, FM radio
+\subsection{Half-Duplex - střídavě obousměrný přenos}
+Komunikace v bobou směrech, ale nikdy ne současně.\\
+Např.: vysílačky push-to-talk
+\subsection{Duplex - plně obousměrný přenos}
+Komunikace v obou směrech současně.\\
+Např.: telefonní hovor, kabelový internet
+\section{Typy spojování 2+ účastníků sítě}
+\subsection{Komutované}
+Vytvoření spojení mezi účastníky $\rightarrow$ vyhrazené přenosové pásmo zaniká až při ukončení komunikace.
+\begin{itemize}
+	\item 1 přenosový kanál mezi dvěma účastníky
+	\item vyžaduje požadovanou kvalitu spojení
+	\item nižší efektivita využití přenosové kapacity kanálu (stále obsažený kanál)
+	\item Při přenosu signálu se využívá \textit{synchronní přenosový mód} (s konstantní přenosovou rychlostí signálu)
+\end{itemize}
+\subsection{Paketové}
+Tok data rozdělen na \textit{pakety} $\rightarrow$ ty se přenášejí samostatně a síť pro ně nedrží jednu trvale rezervovanou cestu.\\
+Přenos probíhá způsoby:
+\begin{itemize}
+	\item Služba bez spojení - vhodná pro přenos krátkých zpráv
+	\item Služba se spojením - první (vyhledávací) paket vyznačí \textit{virtuální okruh} a rezervuje v každém přepojovacím uzlu dostatečnou paměť pro celou zprávu. Pro velké objemy dat.
+\end{itemize}
+	\begin{description}	
+	\item[$\oplus$] efektivní využití přenosové kapacity sítě
+	\item[$\circleddash$] problémy vznikající při vzájemné komunikaci v reálném čase
+\end{description}
+\section{Diverzitní příjem}
+Metoda využití více kanálů (cest) pro přenos jednoho signálu v případě výpadku jednoho kanálu (snížení chybovosti)\\
+Příčiny výpadku signálu:
+\begin{itemize}
+	\item Únik (Kolísání signálu v místě příjmu) způsobený změnami úrovní terénu, překážkami mezi (pohybující se) mobilní stanicí  a (statickou) základnovou stanicí
+	\item mnohacestným šířením mezi vysílačem a přijímačem, komplikovaným navíc pohybem TX a RX (vektorové sčítání signálů)
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/4. otazka/diverzitniPrijem"}
+	\caption{Vícecestný příjem}
+	\label{fig:diverzitniprijem}
+\end{figure}
+Vytváření více kanálů:
+\begin{itemize}
+	\item \textbf{Prostorová diverzita} - použití více antén vzájemně vzdálených (o několik vlnových délek, min. $\lambda$/2)
+	\item \textbf{Úhlová diverzita} - směrové antény nastavené do různých směrů (příjem signálu odražených od více objektů)
+	\item \textbf{Polarizační diverzita} - 2 antény s různou horizontální a vertikální polarizací
+	\item \textbf{Frekvenční diverzita} - posílání stejných dat na různých frekvencích (odstup jednotlivých kmitočtů 2-4 \% kmitočtu nosné vlny)
+	\item \textbf{Časová diverzita} - posílání stejných dat s časovým odstupem (rámec TDM má délku až jednotky sekund - dlouhá doba přenosu)
+\end{itemize}
+\newpage
+Rozlišení diverzitních systémů podle počtu antén vysílače a přijímače:
+\begin{itemize}
+	\item \textbf{SISO} (single IN, single OUT) - 1 vysílá; 1 přijímá
+	\item \textbf{SIMO} (single IN, multiple OUT) - 1 vysílá; více antén přijímá
+	\item \textbf{MISO} (multiple IN, single OUT) - více antén vysílá; 1 přijímá
+	\item \textbf{SISO} (multiple IN, multiple OUT) - více antén vysílá; více antén přijímá
+\end{itemize}
+
+\chapter{Pátá otázka}
+\section{Struktura obecné buňkové sítě a hlavní výhody}
+Buňková síť rozděluje celé pokrytí na \textit{buňky}, ve kterých pracují základnové stanice.\\
+Každá buňka obsluhuje omezenou oblast a sousední buňky mohou znovu používat stejné kmitočty, pokud je zajištěn dostatečný odstup, aby nedocházelo k rušení.
+\subsection{Základní princip:}
+Mobilní stanice komunikuje s nejbližší základnovou stanicí, která zprostředkuje přístup do vyšší vrstvy sítě.\\
+Síť je obvykle tvořena:
+\begin{itemize}
+	\item mobilními stanicemi uživatelů,
+	\item základnovými stanicemi,
+	\item řídicí a přepojovací částí sítě,
+	\item rozhraním do dalších sítí.
+\end{itemize}
+\subsection{Plošná struktura}
+\begin{itemize}
+	\item \textbf{Spojení bod - bod} (PP point to point) - pro spojení ústředny s \textbf{jedním} místem, kde je vyšší koncentrace účastníků. Realizace mikrovlnným spojem se směrovými anténami
+	\item \textbf{Spojení bod - více bodů} (PM point to multipoint) - pro spojení ústředny s \textbf{několika} místy vyšší koncentrace účastníků, na které mohou navazovat bezdrátová spojení jednotlivých účastníků
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/5. otazka/bunkovaStruktura"}
+		\caption{Buňková struktura sítě s propojením bod-více bodů}
+		\label{fig:bunkovastruktura}
+	\end{figure}
+	\newpage
+	\item \textbf{Buňková struktura} - území rozděleno na velké množství menších oblastí (buněk). Uvnitř buňky je umístěna základová radiová stanice. Buňky mají různou velikost i tvar:
+	\begin{itemize}	
+		\item \textbf{femtobuňka} (poloměr desítky \textit{m}) - pokrývá nepokryté části území mezi menšími piko nebo mikrobuňkami
+		\item \textbf{pikobuňka} (poloměr $<$50 \textit{m}) - pro místa s vysokou koncentrací uživatelů (nádraží, obchodní domy)
+		\item \textbf{mikrobuňka} (poloměr $<$1 \textit{km}) - oblasti s větším provozem (centra měst)
+		\item \textbf{makrobuňka} (poloměr desítky \textit{km}) - oblasti s malou hustotou provozu (venkov)
+	\end{itemize}
+\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{"Obrazky/MKO/5. otazka/bunkovaStruktura2"}
+		\caption{Ukázka systému buněk}
+		\label{fig:bunkovastruktura2}
+	\end{figure}
+	Buňky očíslovány 1 až 7 v rozsahu 1-100 až 601-700; každá buňka používá jiný kmitočtový kanál a stejná čísla se tedy mohou opakovat, pokud jsou v dostatečně vzdálené oblasti\\
+	\underline{\textit{Stejné číslo}} = stejná frekvenční sada v rámci opakující se frekvenční struktury\\
+	\underline{\textit{Jiná čísla}} = jiné kanálové skupiny, aby sousední buňky nerušily jedna druhou\\
+	Stejné frekvence se použijí vícekrát v síti, ale jen v buňkách, které jsou od sebe dost daleko $\rightarrow$ výrazné zvýšení kapacity systému.\\
+	\textbf{Zvýšení kapacity sítě:} Jedna buňka může mít 3 nebo 6 sektorů $\rightarrow$ zvýšení kapacity a zabránění rušení pokrýváním buňky po částech pomocí sektorových antén. 
+	
+\subsection{Hlavní výhody buňkové sítě}
+\begin{itemize}
+	\item \textbf{Vysoká kapacita} díky opakovanému použití frekvencí v různých buňkách.
+	\item \textbf{Úspora kmitočtového spektra}, protože není nutné mít pro každého účastníka vlastní frekvenci.
+	\item \textbf{Dobré pokrytí} i rozsáhlého území pomocí sítě menších buněk.
+	\item \textbf{Podpora mobility} uživatele při pohybu mezi buňkami.
+	\item \textbf{Možnost zvyšovat kapacitu} zmenšováním buněk, například ve městech.
+\end{itemize}
+
+\section{nevyžaduje, ale pro úplnost: Nevýhody a omezení}
+\begin{itemize}
+	\item Nutnost řízení rušení mezi sousedními buňkami.
+	\item Složitější správa sítě.
+	\item Potřeba předávání spojení při pohybu uživatele mezi buňkami.
+\end{itemize}
+
+\section{Handover}
+Proces, při kterém se mobilní spojení přepojí na jinou mobilní stanici, když se uživatel pohybuje mezi buňkami bez přerušení komunikace. Kdyby nedošlo k předání spojení, mobilní stanice by při opuštění buňky ztratila spojení.\\
+\textbf{Průběh:}
+\begin{enumerate}
+	\item Systém sleduje kvalitu signálu od sousedních buněk.
+	\item Vyhodnotí, že současná buňka už není vhodná pro další obsluhu.
+	\item Vybere se cílová základnová stanice.
+	\item Přenos se předá nové stanici.
+	\item Původní spojení se ukončí.
+\end{enumerate}
+\subsection{Typy handoveru}
+\begin{itemize}
+	\item \textbf{Tvrdý handover} odpojení od 1. buňky $\rightarrow$ přerušení $\rightarrow$ připojení k 2. buňce
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\linewidth]{"Obrazky/MKO/5. otazka/handoverTvrdy"}
+		\caption{Tvrdý handover}
+		\label{fig:handovertvrdy}
+	\end{figure}
+	\item \textbf{Měkký handover} paralelní spojení s více kanály
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{"Obrazky/MKO/5. otazka/handoverMekky"}
+		\caption{Měkký handover}
+		\label{fig:handovermekky}
+	\end{figure}
+	\item \textbf{Bezešvý handover} krátkodobé překrytí spojení při přepojení mezi kanály
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\linewidth]{"Obrazky/MKO/5. otazka/handoverBezesvy"}
+		\caption{Bezešvý handover}
+		\label{fig:handoverbezesvy}
+	\end{figure}
+\end{itemize}
+\section{Rozdělení handoveru podle způsobu měření kvality spojení}
+$\rightarrow$ rozhodují o handoveru a řídí jej
+\begin{itemize}
+	\item \textbf{Sítí řízený handover} měření kvality kanálu provádí základnová stanice (na základě výsledků rozhoduje o přepnutí)
+	\begin{description}	
+		\item[$\oplus$] na mobilní stanici (UE - user equipment) nejsou kladeny žádné požadavky
+	\end{description}
+	\item \textbf{Handover řízený mobilní stanicí} měření kvality provádí mobilní stanice i základnová stanice (rozhodnutí o přepnutí provede mobilní stanice, předá jej do systému a ten provede přepnutí) 
+	\item \textbf{Sítí řízený handover s asistencí mobilní stanice} mobilní stanice měří velikost signálu sousedních základnových stanic a výsledky měření předává servisní základnové stanici (ke které je právě připojena).\\
+	Současně mobilní i základnová stanice provádí měření probíhajícího spojení. Na základě naměřených údajů provádí systém rozhodnutí o přepnutí spojení a uskuteční je (např. GSM).
+\end{itemize}
+\chapter{Šestá otázka}
+\section{Základní architektura a vlastnosti přenosových systémů GSM, GPRS, EDGE, UMTS}
+\subsection{GSM 2G}
+GSM navržen tak, aby nebyl uzavřený, ale aby umožňoval přístup i do jiných sítí (pevná telefonní linka, mobilní sítě, např. LTE).\\
+\underline{Přenos:}  spojení trvale rezervované, i když uživatel zrovna nic neposílá
+Architektura:
+\begin{itemize}
+	\item \textbf{BSS (base station subsystem)} subsystém základnových stanic BTS; komunikace s UE přes rádiové rozhraní BSC.
+	\item \textbf{NSS (network \& switching subsystem)} síťový a přepojovací subsystém - směrování hovorů do jiných sítí
+	\item \textbf{OSS (operation support subsystem)} operační provozní subsystém - monitoring, údržba, správa parametrů sítě
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{"Obrazky/MKO/6. otazka/architekturaGSM"}
+	\caption{Architektura GSM}
+	\label{fig:architekturagsm}
+\end{figure}
+\subsection{GPRS}
+Pomocí systému GPRS je rozšířen GSM a umožňuje \textbf{přenos datových paketů} přes rádiové rozhraní s teoretickou přenosovou rychlostí max 171,2 kbit/s.\\
+\underline{Paketový přenos:} rádiozdroje se přidělují jen tehdy, když je co posílat (= lepší využití kapacity sítě)
+Doplnění stávající GSM sítě o bloky:\\
+\begin{itemize}
+	\item \textbf{PCU (Packet controller unit)} zajišťuje řízení paketového provozu na rádiovém rozhraní.
+	\item \textbf{SGSN (Serving GPRS support node)} provádí šifrování dat a kompresi; komunikace s rádiovou částí sítě GPRS a druhým datovým uzlem GGSN
+	\item \textbf{GGSN (Gateway GPRS support node)} směrovač, jehož úkolem je komunikace s externími paketovými datovými sítěmi (např. sítí Internet)
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{"Obrazky/MKO/6. otazka/architekturaGPRS"}
+	\caption{Architektura GPRS}
+	\label{fig:architekturagprs}
+\end{figure}
+
+\subsection{EDGE}
+Další evoluční stupeň GSM/GPRS\\
+Pomocí efektivní digitální modulace 8-PSK (namísto GMSK) zvyšuje přenosovou rychlost systému GSM.\\
+3x vyšší přenosová rychlost než GPRS (GPRS: 270 kbit/s, EDGE: 810 kbit/s)\\
+Díky modulaci 8-PSK je náchylnější na přenosové podmínky.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\linewidth]{"Obrazky/MKO/6. otazka/8psk"}
+	\caption{Vektorový diagram modulace 8PSK}
+	\label{fig:8psk}
+\end{figure}
+
+\subsection{UMTS 3G}
+Oproti GSM/GPRS/EDGE přenáší výrazně vyšší kapacitu, lepší datové služby a širší možnost mobiilního přístupu k síti\\
+Architektura:
+\begin{itemize}
+	\item \textbf{RNS (Rádiová přístupová síť)} využívá pozemní rádiové rozhraní UTRAN (universal terrestrial radio access network) - UE, NodeB, RNC (= přenosová a přepojovací funkce)
+	\item \textbf{CN (páteřní síť)} řídí provoz a spojení v systému
+\end{itemize}
+Jednotlivé prvky architektury:
+\begin{itemize}
+	\item \textbf{UE (user equipment)} - mobilní stanice MS systému UMTS může pracovat v módech:
+	\begin{itemize}	
+		\item CS (circuit switch mode pro hlasové hovory)
+		\item PS (packet switch mode pro datové přenosy)
+		\item PS/CS (circuit switch mode pro připojení současně k PS i CS)
+	\end{itemize}
+	\item \textbf{NodeB (základnová stanice u 3G)}
+	\begin{itemize}	
+		\item převod signálu přes antény z transportních kanálů do fyzických kanálů
+		\item řízení výkonu mobilních stanic (důležité pro handover)
+		\item kmitočtová a časová synchronizace (chipová, bitvá, slotová, rámcová)
+	\end{itemize}
+	\item \textbf{RNC (kontrolér)}
+	\begin{itemize}	
+		\item zajišťuje řízení UTRAN
+		\item vysílá systémové informace o buňkách
+		\item řídí handover 
+	\end{itemize}
+	\item \textbf{CS (circuit switched) Domain} - komutovaný provoz s přepínáním okruhů
+	\begin{itemize}	
+		\item pro hlasovou komunikaci
+	\end{itemize}
+	\item \textbf{PS (packet switched) Domain} - paketový provoz s přepínáním paketů
+	\begin{itemize}	
+		\item pro datový přenos (např. se sítí Internet)
+	\end{itemize}
+	\item \textbf{BC (broadcast) Domain}
+	\begin{itemize}	
+		\item centrum pro koordinaci vysílání v jednotlivých buňkách CNC (cell broadcast center)
+	\end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/6. otazka/architekturaUMTS"}
+	\caption{Architektura UMTS}
+	\label{fig:architekturaumts}
+\end{figure}
+Rozhraní mezi prvky systému UMTS:
+\begin{itemize}
+	\item \textbf{Uu} rozhraní mezi mobilním telefonem (UE) a vysílačem (NodeB)
+	\item \textbf{Iub} rozhraní mezi vysílačem (NodeB) a kontrolérem (RNC)
+	\item \textbf{Iur} rozhraní spojující více kontrolérů (RNC)
+	\item \textbf{Iu} rozhraní mezi kontrolérem (RNC) a páteřní sítí (CN)
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/6. otazka/architekturaUMTS-rozhrani"}
+	\caption{Rozhraní sítě UMTS}
+	\label{fig:architekturaumts-rozhrani}
+\end{figure}
+
+\chapter{Sedmá otázka}
+\section{Systém LTE 4G}
+Spadá mezi standardy UMTS.\\
+Vysokorychlostní bezdrátový přenos dat.\\
+Cílem LZE: zvýšení přenosové rychlosti, zkrácení odezvy, snížení nákladů\\
+Šířka pásma: 1,4 až 20 MHz (flexibilní pro práci v různých RF pásmech)\\
+Podpora MIMO: využití více vysílacích i přijímacích antén pro současný přenos více nezávislých datových toků na stejné frekvenci
+\begin{itemize}
+	\item \textbf{Frequency division duplex (FDD)}: downlink i uplink probíhají současně, každý ale odděleně na jiné frekvenci
+	\item \textbf{Time division duplex (TDD)} downlink i uplink probíhají na stejné frekvenci, ale velmi rychle se střídají v čase
+\end{itemize}
+\subsection{Modulace:}
+\begin{itemize}
+	\item \textbf{Vnější (rozděluje kanál)} 
+	\begin{itemize}	
+		\item OFDM (rozdělení širokého 20 MHz spektra na několik subnosných)
+	\end{itemize}
+	\item \textbf{Vnitřní (zapisuje data na subnosné)}
+	\begin{itemize}	
+		\item QPSK: nejodolnější modulace pro špatný signál; přenese 2bity/symbol
+		\item 16-QAM: pro středně dobrý signál; přenese 4 bity/symbol
+		\item 64-QAM: pro čistý signál; přenese 6 bitů/symbol (nejrychlejší v základním LTE)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Architektura:}
+\begin{itemize}
+	\item \textbf{UE}: koncový uživatel, bezdrátové spojení se sítí rozhraním Uu
+	\begin{itemize}	
+		\item SIM karta (slouží k identifikaci)
+		\item Mobilní zařízení (slouží k připojení do sítě)
+		\item Terminál TE (hardware: displej, reproduktor, mikrofon,...)
+	\end{itemize}
+	\item \textbf{E-UTRAN}: přístupová rádiová síť, skládá se ze základnových stanic eNodeB
+	\begin{itemize}	
+		\item vytváří rádiové buňky
+		\item nepotřebuje kontrolér RNC, protože jsou stanice eNodeB propojeny mezi sebou přímo $\rightarrow$ plynulé přepojení při handoveru
+	\end{itemize}
+	\item \textbf{EPC}: jádro sítě
+	\begin{itemize}	
+		\item plně paketovaná síť operátora
+		\item řídí síť, ověřuje uživatele, přiděluje IP adresy
+	\end{itemize}
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/7. otazka/architekturaLTE"}
+	\caption{Architektura LTE}
+	\label{fig:architekturalte}
+\end{figure}
+Jednotlivé prvky architektury:
+\begin{itemize}
+	\item \textbf{eNodeB} - základnová stanice (anténa), řídící jendotka rádiové sítě
+	\begin{itemize}	
+		\item modulace
+		\item rozdělování pásem uživatelům
+		\item řídí handover 
+	\end{itemize}
+	\item \textbf{MME} - hlavní řídící prvek sítě LTE
+	\begin{itemize}	
+		\item obsluha několika eNodeB
+		\item kontrola přístupu do sítě
+		\item ochrana proti odposlechu
+	\end{itemize}
+	\item \textbf{SAE-GW (dvojice servisní brána S-GW a brána paketové a datové sítě P-GW)} 
+	\begin{itemize}	
+		\item udržuje datový tok, připojuje k Internetu, přiděluje IP adresy
+	\end{itemize}
+\end{itemize}
+Rozhraní mezi prvky systému UMTS:
+\begin{itemize}
+\item \textbf{Uu} - bezdrátové rádiové rozhraní mezi UE a eNodeB
+\item \textbf{X2} - kabelové rozhraní mezi základnovými stanicemi eNodeB
+\end{itemize}
+
+\subsection{LTE-Advanced}
+Standard pro systémy 4G.\\
+\begin{itemize}
+	\item Latence: 5 ms
+	\item 3x vyšší spektrální účinnost (= datový tok/šířka pásma) oproti LTE (downlink: 30bit/s/Hz; uplink: 15bit/s/Hz)
+	\item více antén (více uživatelů přenáší současně)
+	\begin{itemize}	
+		\item 8x8 MIMO pro downlink
+		\item 4x4 MIMO pro uplink
+	\end{itemize}
+	\item sdružení sousedních i nesousedních nosných pásem do jednoho výsledného $\rightarrow$ velmi rychlá přenosová rychlost
+	\begin{itemize}	
+		\item sloučením dvou 20 MHz pásem vznikne pásmo 40 MHz (v kombinaci s 8x8 MIMO umožňuje přenosovou rychlost v downlinku 1,2 Gbit/s)
+		\item maximálně lze sloučit 5 pásem (max výsledná šířka pásma: 100 MHz, přenosová rychlost downlink: 3 Gbit/s, přenosová rychlost uplink: 1,5 Gbit/s)
+	\end{itemize}
+	\item Využití Reléových stanic RN
+	\begin{itemize}	
+		\item zvýšení kapacity sítě i zlepšení kvality spojení mezi eNodeB a UE
+		\item zvětšení pokrytí území pomocí \textbf{femtobuněk}
+		\begin{itemize}	
+			\item pro lokální pokrytí v místech se špatnou kvalitou signálu/
+			\item v hustě osídlených lokalitách pro vysoké přenosové rychlosti
+		\end{itemize}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\linewidth]{"Obrazky/MKO/7. otazka/femtobunky"}
+			\caption{Aplikace femtobuněk (vlevo: hustě osídlené území, vpravo: v místě se špatným signálem-mimo dosah)}
+			\label{fig:femtobunky}
+		\end{figure}
+		
+	\end{itemize}
+\end{itemize}
+
+\chapter{Osmá otázka}
+\section{Systém LTE 4G}
+\subsection{E-UTRA Downlink}
+Použití systému OFDMA (více uživatelů sdílí stejné spektrum, každý dostane svou podmnožinu subnosných) pro vyšší spektrální účinnost ve srovnání s WCDMA (rozkládání uživatelských bitů do širšího frekvenčního pásma; u 3G)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/8. otazka/downlinkOFDM"}
+	\caption{Znázornění OFDM}
+	\label{fig:downlinkofdm}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/8. otazka/downlinkOFDMA"}
+	\caption{Znázornění OFDMA} (rozestupy subnosných 15 kHz)
+	\label{fig:downlinkofdma}
+\end{figure}
+\begin{itemize}
+	\item \textbf{Princip:} Data jsou přenášena paralelně na velkém množství úzkopásmových ortogonálních subnosných.
+	\item \textbf{Modulace:} Používá se QPSK, 16-QAM nebo 64-QAM.
+	\item \textbf{Výhody:} Vysoká spektrální účinnost, dobrá odolnost vůči mezisymbolovým interferencím (ISI) díky ochrannému intervalu (\textit{CP Cyclic Prefix}), snadná implementace MIMO.
+	\item \textbf{Nevýhody:} Značné kolísání obálky signálu, což vede k vysokému PAPR (Poměr maximálního s středního výkonu signálu). To ale nevadí základnové stanici (eNodeB), která má dostatek napájecího výkonu.
+	\item Zdrojové prostředky (RB) jsou přidělovány uživatelům na základě jejich požadavků, aktuálním stavu sítě a časové kmitočtové mpy úniků
+	\item Nejmenší kmitočtovou časovou jendotkou je zdrojový blok RB (resource block)
+	\item Nejmenší přenosovou jendotkou je SB (scheduling block), tvořený dvěma PRB, které na sebe bezprostředně časově navazují (12 subnosných $\times$ 0,5 ms)
+	\item Jednomu uživateli může být přiděleno i více zdrojových bloků, které mohou být rozprostřeny v dostupném kmitočtovém pásmu
+	\item V 1. a 5. OFDM symbolu v každém slotu se přenáeji referenční signály (v DL specifikují buňku, UE a službu MBSFN (= způsob vysílání, kdy více vysílačů vysílá stejný signál na stejné frekvenci, pro lepší pokrytí))
+	\begin{itemize}	
+		\item \textbf{Referenční signál} - pro odhad charakteristiky kanálu (UE podle nich měří sílu přenosu a rušení); využití v DL i UL
+		\item \textbf{Synchronizační signál} - identifikační buňky (synchronizace UE se sítí, aby mohl azačít komunikace)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.25\linewidth]{"Obrazky/MKO/8. otazka/refSymbolyDownlink"}
+			\caption{Umístění referenčních symbolů v LTE (downlink)}
+			\label{fig:refsymbolydownlink}
+		\end{figure}
+	\end{itemize}
+\end{itemize}
+	\newpage
+	Proces v uplinku:
+\begin{itemize}
+	\item (1) ochrana proti chybám + prokládání dat
+	\item (2) tvorba datových symbolů modulací (QPSK, 16-QAM, 64-QAM)
+	\item (3) převod do paralelního tvaru a rozdělení na jednotlivé subnosné
+	\item (4) vytvoření OFDM signálu, tedy převod z kmitočtové do časové oblasti
+	\item (5) sloučení signálu + vložení ochranného intervalu (cyklický prefix)
+	\item (6) převod na analogový signál + transpozice na vysílací nosnou před odesláním anténou
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/8. otazka/downlinkSchema"}
+		\caption{Blokové schéma pro E-UTRA (Downlink)}
+		\label{fig:downlinkschema}
+	\end{figure}
+\end{itemize}		
+
+\subsection{E-UTRA Uplink}
+Použití systému SC-FDMA (\textit{Single Carrier - Frequency Division Multiple Access}), kvůli nízkému poměru špičkového a průměrného výkonu (UE nepracuje s velkými výkyvy výkonu při uploadu)
+\begin{itemize}
+	\item \textbf{Princip:} Před samotným OFDM mapováním je signál transformován pomocí diskrétní Fourierovy transformace (DFT), čímž se rozprostře přes přidělené subnosné. Z toho důvodu je signál vnímán spíše jako signál o jedné nosné (Single Carrier).
+	\item \textbf{Výhody:} Výrazně nižší PAPR oproti OFDMA $\rightarrow$ efektivnější a levnější provedení koncového výkonového zesilovače v mobilním telefonu $\rightarrow$ prodlužuje výdrž baterie.\\
+\end{itemize}
+	
+Proces v uplinku:
+\begin{itemize}
+	\item (1) ochrana proti chybám + tvorba symbolů
+	\item (2) zpracování symbolů (omezení výkonových špiček)
+	\item (3) určení, na jakých frekvencích bude UE vysílat do eNodeB
+	\item (4) a (5) převedení do časové oblasti
+	\item (6) převod na analog. + finální úpravy před odesláním anténou
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/8. otazka/uplinkSchema"}
+		\caption{Blokové schéma pro E-UTRA (Uplink)}
+		\label{fig:uplinkschema}
+	\end{figure}
+\end{itemize}
+\subsection{Systém LTE-CAT}
+Rozšířené LTE určené pro \textbf{Internet věcí (IoT) a M2M (Machine-to-Machine)} komunikaci.\\
+	\begin{description}	
+	\item[$\oplus$] výborný dosah signálu
+	\item[$\oplus$] úsporné režimy (fungování s malou baterií i několik let)
+	\item[$\oplus$] plynulý přenos dat při handoveru
+\end{description}
+\newpage
+
+\begin{itemize}	
+	\item \textbf{LTE Cat-M1}
+	\begin{itemize}	
+		\item \textbf{Parametry:} Šířka pásma je omezena na \textbf{1,4 MHz}
+		\item \textbf{Rychlost:} Okamžitá maximální rychlost je okolo 1 Mbps v DL i UL.
+		\item \textbf{Energetická účinnost:} Zařízení mají navržené spánkové mechanismy, čímž baterie vydrží i několik let.
+		\item \textbf{Pokrytí:} Vyšší pokrytí oproti klasickému LTE (zisk cca o 13 dB).
+		\item \textbf{Příklady:} chytré hodinky, GPS, zabezpečovací systémy (malý přenos dat)
+	\end{itemize}
+	\item \textbf{LTE Cat-M2 (nástupce M1)}
+	\begin{itemize}	
+		\item \textbf{Parametry:} Šířka pásma \textbf{5 MHz}
+		\item \textbf{Rychlost:} Okamžitá maximální rychlost je okolo 4$\div$7 Mbps.
+		\item \textbf{Příklady:} kamerové systémy s nižším rozlišením, chytré billboardy (větší přenos dat)
+	\end{itemize}
+\end{itemize}
+\subsection{Systém NB-IoT}
+Síť, kde je potřeba přenos malého množství dat při nízké přenosové rychlosti (desítky$\div$stovky kbps) s vysokým zpožděním.\\
+Úzkopásmová bezdrátová technologie určená pro připojení velkého množství jednoduchých zařízení.
+\begin{description}	
+	\item[$\oplus$] Nízká cena
+	\item[$\oplus$] Realizace pouze softwarovou úpravou LTE vysílačů
+	\item[$\oplus$] Obsluha desítek tisíc zařízení z 1 buňky
+	\item[$\oplus$] Úspora baterie (výdrž až 10 let)
+\end{description}
+\begin{itemize}	
+	\item \textbf{NB-IoT scénáře:}
+	\begin{itemize}	
+		\item \textbf{Stand-alone:} NB-IoT běží samostatně na vlastní vyhrazené frekvenci (například na staré vyřazené 2G)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.3\linewidth]{"Obrazky/MKO/8. otazka/NB-IoTstandAlone"}
+			\caption{NB-IoT Stand-alone}
+			\label{fig:nb-iotstandalone}
+		\end{figure}
+		\item \textbf{Guard Band:} využití volné mezery v ochranném pásmu (NB-IoT je úzkopásmové a vejde se do hluchého místa)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.3\linewidth]{"Obrazky/MKO/8. otazka/NB-IoTguardBand"}
+			\caption{NB-IoT Guard Band}
+			\label{fig:nb-iotguardband}
+		\end{figure}
+		\item \textbf{In-Band:} využití jednoho z bloků uprostřed aktuálně používané LTE frekvence (NB-IoT se vysílá společně s LTE daty)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.3\linewidth]{"Obrazky/MKO/8. otazka/NB-IoTinBand"}
+			\caption{NB-IoT In Band}
+			\label{fig:nb-iotinband}
+		\end{figure}
+	\end{itemize}
+\end{itemize}
+\newpage
+\chapter{Devátá otázka}
+\section{Systémy WLAN}
+Bezdrátová lokální síť určená pro připojení zařízení na kratší vzdálenost
+\subsection{Standard IEEE 802.11 - WiFi}
+Mezinárodní sada norem, definující způsob bezdrátové komunikace.\\
+Původní standard 802.11 navržen jako bezdrátová alternativa k Ethernetu.\\
+Varianty se liší: rychlostí přneosu, efektivitou, podporou víceuživatelského provozu
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/9. otazka/IEEE"}
+	\caption{IEEE normy}
+	\label{fig:ieee}
+\end{figure}
+
+\subsection{WiFi - Fyzické vrstvy}
+Systém, který zajišťuje převod bitů na radiový signál a zpět (volba pásma, kanálu, modulace, rychlosti přenosu)\\
+Metody přenosu dat na fyzické vrstvě WiFi:
+\begin{itemize}	
+	\item \textbf{FH-SS (frequency hopping spread spectrum)}
+	\begin{itemize}	
+		\item rozšíření spektra frekvenčním "skákáním" podle pseudonáhodné sekvence $\rightarrow$ vysílač nevysílá na jedné frekvenci, ale nesutále velmi rychle přeskakuje mezi frekvencemi v rozsahu RF pásma (šířka pásma: 1 MHz)
+		\item odolné proti rušení
+		\item nízká přenosová rychlost (použití také v Bluetooth)
+		\item Vyřazena z nových standardů
+	\end{itemize}
+	\item \textbf{DS-SS (direct sequence spread spectrum)}
+	\begin{itemize}	
+		\item rozprostření spektra pseudonáhodnou sekvencí za použití logické funkce XOR na šířku pásma 20 MHz
+		\item Rychlost přenosu při 802.11: 2 Mbit/s; při 802.11b: 11Mbit/s s DS-SS
+	\end{itemize}
+	\item \textbf{OFDM (Orthogonal frequency division multiplexing)}
+	\begin{itemize}	
+		\item spektrum přenosového pásma rozděleno na velké množství subnosných, vzájemně se nerušících, paralelních signálů
+		\item použití u IEEE 802.11a (5 GHz),  IEEE 802.11g (54 Mbit/s)
+	\end{itemize}
+\end{itemize}
+\newpage
+\subsection{WiFi - Předcházení kolizím}
+Přístup pomocí paketů \textbf{RTS} (request to send) a CTS (clear to send).\\
+Pro přenos každého paketu se používají 4 rámce:
+\begin{itemize}	
+	\item 1. RTS - požadavek na vysílání (PC $\rightarrow$ Router)
+	\item 2. CTS - pokud kanál volný, připravený k vysílání (Router $\rightarrow$ PC)
+	\item 3. Odeslání dat s krátkým delayem (PC $\rightarrow$ Router)
+	\item 4. Čekání na potvrzení příjmu (Router $\rightarrow$ PC); potvrzení nepřijde $\rightarrow$ odeslání znovu
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.45\linewidth]{"Obrazky/MKO/9. otazka/kolize"}
+		\caption{WiFi - Předcházení kolizím}
+		\label{fig:kolize}
+	\end{figure}
+\end{itemize}
+\section{Systémy WPAN}
+WPAN (\textit{Wireless Personal Area Network}) je bezdrátová osobní síť pro komunikaci na velmi krátkou vzdálenost, typicky v řádu několika metrů až desítek metrů.\\
+Použití pro propojení osobních zařízení (mobil, sluchátka, klávesnice, myš).
+\begin{itemize}
+	\item Využití FH-SS 
+	\item RF pásmo: 2,4 GHz
+\end{itemize}
+\subsection{Bluetooth}
+\begin{itemize}
+	\item modulace GFSK (Gauss. Freq. Shift Keyking) - před klíčováním je signál "vyhlazen" Gaussovým filtrem pro potlačení rušení
+	\item počet kanálů: 79; šířka kanálu 1 MHz
+	\item \textbf{RSSI:} indikátor síly signálu [dBm], pro účely lokalizace $\rightarrow$ vyšší hodnota $\rightarrow$ silnější signál
+	\item \textbf{BLE:} (režim Bluetooth Low Energy): šířka pásma: 2 MHz; počet kanálů: 40
+	\item \textbf{Topologie ad hoc:} využití architektury založené na \textit{Master} a \textit{Slave} uspořádání malých siťových struktur: \textbf{pikonetů} (pikosítí)
+	\begin{itemize}	
+		\item Komunikace: \textbf{bod-bod} nebo \textbf{bod-více bodů}
+		\item Komunikace probíhá přes \textit{Mastera} k zařízení \textit{Slave} (\textit{Slave} zařízení nemohou spolu komunikovat napřímo)
+		\item \textit{Master} určuje: identifikaci účastníků a jejich vzájemnou synchronizaci
+		\item Funkce zanikají s ukončením spojení (při následující komunikaci může funkci řídící jednotky plnit jiný terminál)
+	\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{"Obrazky/MKO/9. otazka/WPANtopologie"}
+	\caption{Topologie ad hoc (vlevo), Komunikace mezi více ad hoc (vpravo)}
+	\label{fig:wpantopologie}
+\end{figure}
+	\item \textbf{Bluetooth paket:}
+	\begin{itemize}	
+		\item Přístupový kód: sycnhronizace a autorizace přístupu do sítě (unikátní pro každou \textbf{pikosíť})
+		\item Záhlaví: řídící informace (typ paketu, adresa spojení se sítí \textbf{pikonet})
+		\item Data: uživatelská data, která chceme přenést
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.7\linewidth]{"Obrazky/MKO/9. otazka/WPANpakety"}
+			\caption{Bluetooth paket}
+			\label{fig:wpanpakety}
+		\end{figure}
+	\end{itemize}
+\end{itemize}
+
+\chapter{Desátá otázka}
+\section{Systém LPWAN}
+LPWAN (\textit{Low Power Wide Area Network}) označuje skupinu bezdrátových sítí navržených pro \textbf{malé datové objemy, dlouhý dosah a velmi nízkou spotřebu energie}.\\
+\textbf{Vlastnosti LPWAN:}
+\begin{itemize}
+	\item nízká spotřeba energie,
+	\item malý datový tok (krátké zprávy),
+	\item velký dosah,
+	\item velký počet koncových zařízení,
+	\item nízké provozní náklady,
+	\item vhodnost pro senzory a jednoduchá IoT zařízení.
+\end{itemize}
+
+\subsection{IoT}
+IoT (\textit{Internet of Things}) je koncept propojení fyzických zařízení, senzorů a objektů do sítě, aby mohla sbírat, odesílat a zpracovávat data.\\
+Typické IoT aplikace jsou měření teploty, vlhkosti, spotřeby energie, sledování polohy nebo průmyslová automatizace.\\
+LPWAN technologie se pro IoT hodí právě proto, že umožňují levné, energeticky úsporné a dostatečně spolehlivé připojení mnoha zařízení.
+\begin{itemize}
+	\item \textbf{IoT}
+	\begin{itemize}
+		\item Platforma počítačů, chytrých zařízení a strojů schopných vzájemné komunikace a spolupráce.
+		\item Vzájemné odesílání a příjem dat.
+		\item IoT zařízení má vlastní software, senzory a možnost síťové konektivity.
+		\item Princip fungování:
+		\begin{itemize}
+			\item senzory přijmou signál,
+			\item proběhne zpracování dat,
+			\item data se přenesou do uživatelského rozhraní,
+			\item zařízení dále komunikují s ostatními prvky sítě.
+		\end{itemize}
+	\end{itemize}
+	
+	\item \textbf{M2M}
+	\begin{itemize}
+		\item Komunikace mezi stroji bez zásahu člověka.
+		\item Slouží k automatické výměně dat mezi zařízeními.
+		\item Může probíhat bezdrátově i kabelově.
+		\item Nemusí být nutně připojena k internetu.
+		\item Využívá se pro přenos krátkých zpráv a provozních údajů.
+		\item Bývá charakteristická vyšší latencí v řádu sekund.
+		\item Má nízkou spotřebu energie, takže zařízení mohou fungovat dlouhou dobu na baterii.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Systém LoRa (\textit{Long Range})}
+LPWAN technologie zaměřená na dlouhý dosah a nízkou spotřebu energie.\\
+\begin{itemize}
+	\item Využití rozprostření spektra
+	\item Přenos dat z velkého množství zařízení
+	\item Modulace: CSS (Chirp Spread Spectrum) - rozprostřené spektrum s chirp signály
+	\begin{itemize}	
+		\item informace se nepřenáší jako jedna stálá nosná, ale jako chirp
+		\item frekvence se během symbolu plynule zvyšuje nebo snižuje napříč šířkou pásma
+	\end{itemize}
+	\item Šířka pásma: bezlicenční 868 MHz (Evropa)
+	\item Šířka kanálu: 125 kHz, 250 kHz, 500 kHz
+	\item např. Chytrá města, průmyslové senzory
+\end{itemize}
+
+\subsection{Systém SigFox}
+\begin{itemize}
+	\item LPWAN technologie určená pro velmi úsporný přenos malých zpráv na velké vzdálenosti.
+	\item RF pásmo: bezlicenční 868 MHz (Evropa)
+	\item Šířka kanálu: 100 Hz
+	\item Modulace: GFSK (DL), DBPSK (UL)
+	\item Použití: Občasné odesílání malých dat, ne pro trvalou komunikaci nebo větší objemy dat.
+	\item \textbf{Architektura:}
+	\begin{itemize}	
+		\item využití buňkové struktury se základnovými stanicemi
+		\item po přijetí zprávy ze zákaznického zařízení (modemu) zasílá základnová stanice zprávu do SigFox cloudu
+		\item zprávy se dále zasílají k cílovému zařízení
+	\end{itemize}
+	\item Přenosový rámec tvoří jen 26 bytů (0 až 12 bytů tvoří uživatelská data; zpětný kanál omezen na 0 až 8 bytů uživatelských dat)
+\end{itemize}
+
+\subsection{LoRa vs SigFox}
+SigFox je více omezený a určený hlavně pro velmi malé zprávy a minimální provoz.\\
+LoRa je flexibilnější, protože umožňuje lepší kontrolu parametrů přenosu a obvykle i širší možnosti využití.\\
+Obě technologie ale spadají mezi LPWAN a sdílejí hlavní cíle: dlouhý dosah, nízkou spotřebu a malý datový tok.
+
+

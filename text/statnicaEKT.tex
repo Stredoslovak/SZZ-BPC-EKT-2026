@@ -1,0 +1,167 @@
+% !TeX root = statnicaEKT.tex
+% !TeX spellcheck = sk_SK-Slovak
+\documentclass[%        Základní nastavení
+%  draft,    				  % Testovací překlad
+12pt,       				% Velikost základního písma je 12 bodů
+a4paper,    				% Formát papíru je A4
+oneside,      			% Jednostranný tisk
+%    twoside,      			% Dvoustranný tisk (kapitoly a další důležité části tedy začínají na lichých stranách)
+unicode,						% Záložky a metainformace ve výsledném  PDF budou v kódování unicode
+]{report}				    	% Dokument třídy 'zpráva', vhodná pro sazbu závěrečných prací s kapitolami
+\usepackage[
+a4paper,
+margin=1.5cm,       % nastaví všetky okraje na 1.5 cm
+footskip=0.6cm      % posunie číslo strany bližšie k textu, aby nezostalo mimo papier
+]{geometry}
+\usepackage[utf8]		  %	Kódování zdrojových souborů je UTF-8
+{inputenc}					% Balíček pro nastavení kódování zdrojových souborů
+\usepackage[czech, english, slovak]{babel}
+\usepackage{sectsty}
+%přetypuje nadpisy všech úrovní na bezpatkové, kromě \chapter, která je přenastavena zvlášť v thesis.sty
+\allsectionsfont{\sffamily}
+
+\usepackage{graphicx} % Balíček 'graphicx' pro vkládání obrázků
+% Nutné pro vložení logotypů školy a fakulty
+
+\usepackage[          % Balíček 'acronym' pro sazby zkratek a symbolů
+nohyperlinks				% Nebudou tvořeny hypertextové odkazy do seznamu zkratek
+]{acronym}						
+% Nutné pro použití prostředí 'acronym' balíčku 'thesis'
+
+\usepackage[
+breaklinks=true,		% Hypertextové odkazy mohou obsahovat zalomení řádku
+hypertexnames=false % Názvy hypertext. odkazů budou tvořeny nezávisle na názvech TeXu
+]{hyperref}						% Balíček 'hyperref' pro sazbu hypertextových odkazů
+% Nutné pro použití příkazu 'pdfsettings' balíčku 'thesis'
+
+\usepackage{pdfpages} % Balíček umožňující vkládat stránky z PDF souborů
+% Nutné při vkládání titulních listů a zadání přímo
+% ve formátu PDF z informačního systému
+
+\usepackage{enumitem} % Balíček pro nastavení mezerování v odrážkách
+\setlist{topsep=0pt,partopsep=0pt,noitemsep} % konkrétní nastavení
+
+\usepackage{cmap} 		% Balíček cmap zajišťuje, že PDF vytvořené `pdflatexem' je
+% plně "prohledávatelné" a "kopírovatelné"
+
+%\usepackage{upgreek}	% Balíček pro sazbu stojatých řeckých písmem
+%% např. stojaté pí: \uppi
+%% např. stojaté mí: \upmu (použitelné třeba v mikrometrech)
+%% pozor, grafická nekompatibilita s fonty typu Computer Modern!
+
+\usepackage{amsmath} %balíček pro sabu náročnější matematiky                 
+
+\usepackage{dirtree}	% sazba adresářové struktury
+% vhodné pro prezentaci obsahu elektronické přílohy (např. CD)
+
+\usepackage{algorithm2e} %balíček pro sazbu algoritmů/pseudokódu
+%\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{svg}
+\usepackage{makecell}
+\usepackage{media9}
+\usepackage[siunitx]{circuitikz}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{rotfloat}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\usepackage[formats]{listings}	% Balíček pro sazbu zdrojových textů
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{numerica}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{fancyhdr}
+
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=teal,
+%	filecolor=magenta,
+%	urlcolor=cyan,
+%	pdftitle={Příprava na SZZ - BPC-MVA},
+%	pdfpagemode=FullScreen,
+%}
+
+% Colors
+\definecolor{primary}{HTML}{005F73}
+\definecolor{secondary}{HTML}{0A9396}
+\definecolor{accent}{HTML}{AE2012}
+\definecolor{bglight}{HTML}{F8F9FA}
+
+% Custom boxes
+\newtcolorbox{definice}[1]{
+	colback=primary!5!white,
+	colframe=primary,
+	fonttitle=\bfseries\color{white},
+	title={Definice: #1},
+	arc=3pt,
+	outer arc=3pt,
+	boxrule=1.5pt,
+	bottom=8pt,
+	top=8pt,
+	left=10pt,
+	right=10pt
+}
+
+\newtcolorbox{vzorec}[1]{
+	colback=secondary!5!white,
+	colframe=secondary,
+	fonttitle=\bfseries\color{white},
+	title={Klíčový vzorec: #1},
+	arc=3pt,
+	outer arc=3pt,
+	boxrule=1.5pt,
+	bottom=8pt,
+	top=8pt,
+	left=10pt,
+	right=10pt
+}
+
+\newtcolorbox{otazka}[1]{
+	colback=accent!5!white,
+	colframe=accent,
+	fonttitle=\bfseries\color{white},
+	title={Otázka k SZZ: #1},
+	arc=3pt,
+	outer arc=3pt,
+	boxrule=1.5pt,
+	bottom=8pt,
+	top=8pt,
+	left=10pt,
+	right=10pt
+}
+
+%opening
+\title{Štátnicové otázky k BPC-EKT}
+\author{Skupina Vajčákov z VUT-FEKT-UREL\thanks{Martin Dzuruš, Dominik Gazda, Artem Kostenko, Mykhailo Krasichkov, Daniel Kroužil, Rastislav~Š.~Sokol, Martin Švéda}}
+
+\begin{document}
+	
+	\maketitle
+	\begin{abstract}
+		Toto vypracovanie bolo poskytnuté Vám, čitateľom, v dobrej viere a prianí príjemného učenia sa na Štátnu Záverečnú Skúšku v odbore BPC-EKT. Vypracovanie vzniklo v akademickom roku 2025/2026. Prosím berte na vedomie, že nižšie uvedený dokument je prácou kolektívu, pričom každý člen kolektívu využíval iné metódy a zdroje. Preto tento dokument berte ako pomôcku, nie modlu.
+	\end{abstract}
+	\tableofcontents
+	\renewcommand{\chaptername}{Okruh}
+	\include{ae1}
+	\include{ae2}
+	\include{signaly_1}
+	\include{si2}
+	\include{DE1}
+	\include{DE2}
+	\include{KS1}
+	\include{VFT}
+	\include{mvt}
+	\include{szz_esi}
+	\include{szz_mva}
+	\include{esot}
+	\include{mko}
+	\include{NEZ}
+\end{document}
