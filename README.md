@@ -5,7 +5,7 @@
 * **Platnosť pre akademický rok:** 2025/2026
 
 # Disclaimer
-**Vypracovanie má na svedomí niekoľko ľudí, každý z nás používal iné metódy a zdroje, majte to prosím na pamäti. Tento dokument berte ako znak dobrej vôle a v budúcnosti ho zveľaďujte a udržiavajte. Všetky ostatné odbory majú niećo podobné, len u nás to stále chýba!!!**
+**Vypracovanie má na svedomí niekoľko ľudí, každý z nás používal iné metódy a zdroje, majte to prosím na pamäti. Tento dokument berte ako znak dobrej vôle a v budúcnosti ho zveľaďujte a udržiavajte. Všetky ostatné odbory majú niečo podobné, len u nás to stále chýba!!!**
 
 ---
 
