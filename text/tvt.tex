@@ -45,7 +45,7 @@
 %\tableofcontents
 %\newpage
 
-\chapter{BPC-TVT - Televizní technika a multimedia}
+\part{BPC-TVT - Televizní technika a multimedia}
 \begin{huge}
 	Otázky:
 	\newline
@@ -63,10 +63,10 @@
 	\item Otázka - Televizní přijímače DVB (bloková koncepce přijímače, IDTV, vstupní díl a tuner, dálkové ovládání) a standardy pro přenos s vysokým rozlišením (formáty HDTV, perspektiva přenosu UHDTV).
 \end{enumerate}
 \newpage
-\section{První otázka}
-\subsection{Základní poznatky fotometrie}
+\chapter{První otázka}
+\section{Základní poznatky fotometrie}
 Fotometrie je věda, která se zabývá měřením vlastností světla
-\subsubsection{veličiny a jednotky pro popis světla}
+\subsection{veličiny a jednotky pro popis světla}
 Světlo je z fyzikálního hlediska elektromagnetické záření.\\
 Z technického hlediska je světlo zářivá energie vyhodnocená zrakem, tedy veličina, která se posuzuje podle citlivosti lidského oka.
 \begin{itemize}
@@ -127,7 +127,7 @@ Z technického hlediska je světlo zářivá energie vyhodnocená zrakem, tedy v
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{Mísení barev}
+\subsection{Mísení barev}
 Při vytváření nových barev ze dvou nebo více barev se využívá vlastností lidského zraku a jeho nedokonalosti.\\
 \begin{figure}[H]
 	\centering
@@ -157,7 +157,7 @@ Druhy mísení světla:
 	\end{itemize}
 \end{itemize}
 
-\subsection{Televizní kolorimetrie}
+\section{Televizní kolorimetrie}
 Kolorimetrie je obor zabývající se měřením barvy a vyhodnocením výsledků těchto měření\\J
 Pro určení kolorimetrické soustavy je třeba definovat:
 \begin{itemize}
@@ -166,7 +166,7 @@ Pro určení kolorimetrické soustavy je třeba definovat:
 	\item kolorimetrické jednotky
 	\item kolorimetrické vyrovnání spektrálních barev
 \end{itemize}
-\subsubsection{Kolorimetrická soustava RGB}
+\subsection{Kolorimetrická soustava RGB}
 Jestliže jsou trojbarevným součinitelům přiřazeny 3 souřadnicové směry v prostoru, vznikne trojrozměrný kolorimetrický prostor (každá barva vyjádřena vektorem vycházejícím z počátku souřadnic).\\
 Směr a velikost vektoru jsou dány souřadnicemi rovnými příslušným trojbarevným součinitelům.\\
 Vlnové délky RGB:
@@ -208,7 +208,7 @@ Pro soustavu RGB se používají souřadnice:
 r = \frac{R}{R+G+B}, \qquad g = \frac{G}{R+G+B}, \qquad b = \frac{B}{R+G+B}
 \]
 
-\subsubsection{Kolorimetrická soustava XYZ}
+\subsection{Kolorimetrická soustava XYZ}
 Základní barvy byly zvoleny tak, aby bylo možné všechny barvy vyjádřit kladnými souřadnicemi.\\
 Barva se v ní zapisuje jako:
 \[
@@ -220,7 +220,7 @@ XYZ:
 	\item Y - 1 jasová složka (zbývající 3. osa určující jas)
 \end{itemize}
 
-\subsubsection{Diagram barev MKO}
+\subsection{Diagram barev MKO}
 Diagram barev MKO obsahuje všechny barvy vyskytující se v přírodě.\\
 Diagram barev MKO vzniká projekcí barevné soustavy XYZ do roviny \(x, y\). Na jeho obvodu leží spektrální a purpurové barvy se 100\% sytostí, směrem k bodu bílé barvy sytost klesá.
 Pomocí diagramu dostanu přehled všech viditelných barev ve 2D a jejich chromatičnost nezávisle na jasu (slouží pro porovnávání barev, určování sytosti a vlnové délky).
@@ -242,7 +242,7 @@ x = \frac{X}{X+Y+Z}, \qquad y = \frac{Y}{X+Y+Z}, \qquad z = 1 - x - y.
 	\caption{Diagram barev MKO}
 	\label{fig:mko}
 \end{figure}
-\subsubsection{normalizované barevné pruhy}
+\subsection{Normalizované barevné pruhy}
 Slouží ke kontrole celého televizního řetězce. Testovací obrazec je tvořen osmi svislými pruhy: bílým, žlutým, tyrkysovým, zeleným, purpurovým, červeným, modrým a černým.
 \begin{itemize}
 	\item Bílá a černá - nepestré
@@ -258,9 +258,9 @@ Slouží ke kontrole celého televizního řetězce. Testovací obrazec je tvoř
 \end{figure}
 
 
-\section{Druhá otázka}
-\subsection{Základy televizního přenosu}
-\subsubsection{Blokové schéma}
+\chapter{Druhá otázka}
+\section{Základy televizního přenosu}
+\subsection{Blokové schéma}
 Televizní přenosová soustava slouží k přenosu obrazových, zvukových a datových signálů ze snímací a vysílací části do přijímací části.
 \begin{figure}[H]
 	\centering
@@ -274,7 +274,7 @@ Televizní přenosová soustava slouží k přenosu obrazových, zvukových a da
 	\item \textbf{Přijímací část} -- televizní přijímač, případně set-top box, družicový přijímač nebo záznamové zařízení. Podle potřeby je u antény předzesilovač
 \end{itemize}
 \newpage
-\subsubsection{napěťové úrovně}
+\subsection{napěťové úrovně}
 Určují velikost signálu v různých částech TV přenosové soustavy.\\
 Jednotka: [$dBm$], [$dBmV$] a $dBV$
 Pro napětí platí:
@@ -304,7 +304,7 @@ Při: $U_1$ = 43 $dBV$ na úroveň 40 $dBV$ je výsledná změna úrovně napět
 	\label{fig:log}
 \end{figure}
 
-\subsubsection{Rozklad a diskretizace obrazového toku}
+\subsection{Rozklad a diskretizace obrazového toku}
 Obrazový tok je funkcí souřadnic \(x\), \(y\) a času \(t\) a popisuje rozložení jednotlivých bodů, které se liší jasem a barvou v obrazu.\\
 Pro televizní přenos není nutné přenášet všechny hodnoty spojitě, protože lidské oko má omezenou rozlišovací schopnost a setrvačnost zrakového vjemu.\\
 Pro dosažení vjemu plynulého pohybu obrazu musí být přeneseno za minimálně 25 snímků.\\
@@ -341,7 +341,7 @@ Snímání televizního obrazu provádíme 2 způsoby:
 		\end{figure}
 	\end{itemize}
 \end{itemize}
-\subsubsection{barevný obrazový signál}
+\subsection{barevný obrazový signál}
 Jasový signál \(U_Y\) nese informaci o jasu jednotlivých obrazových bodů. Ze základních barevných signálů \(U_R\), \(U_G\), \(U_B\) se vytváří podle vztahu:
 \[
 U_Y = 0{,}30\,U_R + 0{,}59\,U_G + 0{,}11\,U_B.
@@ -361,8 +361,8 @@ Pro obraz barevných pruhů se ve skriptech ukazuje, že bílá barva vznikne p�
 \end{figure}
 Synchronizační impulz barvy SIB (burst) se v TV přijímači používá k synchronizaci oscilátoru, který generuje barvonosnou složku, která se používá pro demodulaci barvonosného kanálu. Impulz se vkládá do zadní části zatemňovacího impulzu (ten největší peak ohraničující barevné pásmo; řídící signál, který určuje začátek obrazového intervalu; vysoký, aby jej přijímač spolehlivě poznal).
 
-\subsection{Televizní přenosová soustava}
-\subsubsection{DVB}
+\section{Televizní přenosová soustava}
+\subsection{DVB}
 Digitální televize navazuje na analogový přenos a přenáší obraz, zvuk i doplňková data v digitální formě. U digitální televize se obrazový a zvukový signál multiplexuje do transportního toku, který se po zabezpečení moduluje na vysokofrekvenční nosnou vhodnou digitální modulací (DVB-S: QPSK; DVB-T: 16-QAM; DVB-T2: 256-QAM).\\
 Digitální televize přinesla vyšší využití přenosové kapacity, lepší odolnost proti rušení a možnost přenosu dalších datových služeb. Pro systémy DVB se využívá především multiplexace více programů do jednoho přenosového kanálu.\\
 Typy DVB:
@@ -372,7 +372,7 @@ Typy DVB:
 	\item \textbf{DVB-T2} vylepšené pozemní vysílání, OFDM, vyšší datová rychlost, spektrální účinnost (=určuje kolik dat dokáže daný standard přenést za sekundu v určité frekvenční šířce pásma) a lepší využití pásma
 \end{itemize}
 
-\subsubsection{TV pásma a šířky jejich kanálů}
+\subsection{TV pásma a šířky jejich kanálů}
 Způsoby přenášení televizního signálu:
 \begin{itemize}
 	\item \textbf{Pozemní vysílání} - radiovými vlnami
@@ -403,12 +403,12 @@ Pro Českou republiku jsou ve skriptech uvedeny normy:
 
 
 Snímání obrazu a televizní obrazovky (princip snímače CCD, provedení snímačů a jejich vlastnosti, obrazovky s tekutými krystaly a plazmové obrazovky, OLED zobrazovače, principy a vlastnosti).
-\section{Třetí otázka}
-\subsection{Snímání obrazu a televizní obrazovky}
+\chapter{Třetí otázka}
+\section{Snímání obrazu a televizní obrazovky}
 Při procesu snímání obrazu dochází k optoelektrické transformaci (\textbf{přeměna energie světelného záření na elektrický signál}). V dřívějších televizních kamerách se k tomu používaly snímací elektronky (na elektrodách snímacího prvku vytvářelo elektrické napětí, úměrné dopadajícímu světelném záření).\\
 Dnes se používají zejména \textbf{plošné snímače CCD} a novější \textbf{snímače BCCD}. Obraz je ve snímači rozložen na jednotlivé obrazové body, jejichž jas a barva se převádějí na elektrické signály.
 
-\subsubsection{princip snímače CCD}
+\subsection{princip snímače CCD}
 \begin{itemize}
 	\item Založené na technologii MOS (Metal Oxid Semiconductor – kovová elektroda, oxidová izolační vrstva, vrstva polovodiče)
 	\item V závislosti na osvětlení prvku CCD se v něm vytváří elektrický náboj, který je následně postupně přenášen strukturou snímače až na výstup, kde se převádí na napěťový obrazový signál (Q $\rightarrow$ U)
@@ -436,7 +436,7 @@ Dnes se používají zejména \textbf{plošné snímače CCD} a novější \text
 \end{itemize}
 
 
-\subsubsection{provedení snímačů a jejich vlastnosti}
+\subsection{provedení snímačů a jejich vlastnosti}
 Struktura snímače:
 \begin{itemize}
 	\item řádková - obsahuje světlocitlivé buňky uspořádané pouze do jednoho řádku a používá se například ve filmových snímačích
@@ -467,7 +467,7 @@ Vlastnosti:
 	\item[$\oplus$] téměř neomezená životnost
 \end{description}
 
-\subsubsection{Obrazovky s tekutými krystaly LCD}
+\subsection{Obrazovky s tekutými krystaly LCD}
 Složeny z obrazových buněk (článků s LC) uspořádaných do řádků a sloupců, za kterými je zdroj bílého světla.\\
 Využívají vlastnost tekutého krystalu měnit propustnost světla podle velikosti budicího napětí. Samotný LCD prvek není zdrojem světla, ale funguje jako světelný ventil, proto potřebuje podsvícení.\\
 Obrazovka je tvořena pravidelně uspořádanými obrazovými buňkami v řádcích a sloupcích. Každá buňka obsahuje elektrody a vrstvu kapalného krystalu.\\
@@ -487,7 +487,7 @@ Výhody X nevýhody:
 	\item[$\circleddash$] delší doba odezvy (u starších typů)
 \end{description}
 
-\subsubsection{Plazmové obrazovky}
+\subsection{Plazmové obrazovky}
 Směs převážně kladně nabitých iontů, elektronů
 a neutrálních částic se nazývá \textbf{plazma}.\\
 Generují světelé záření a jsou proto aktivním zdrojem světla.
@@ -511,7 +511,7 @@ Výhody X nevýhody:
 	\item[$\circleddash$] vyšší cena 
 \end{description}
 
-\subsubsection{OLED zobrazovače}
+\subsection{OLED zobrazovače}
 \textit{(Organic Light Emitting Diode)} jsou aktivní zobrazovací prvky, ve kterých jednotlivé obrazové body samy vyzařují světlo. Na rozdíl od LCD tedy nepotřebují samostatné podsvícení. \\
 Základem diody je organický materiál,
 který po přiložení stejnosměrného
@@ -526,16 +526,16 @@ Výhody X nevýhody:
 	\item[$\circleddash$] nízká životnost modrých buněk (jas klesá rychleji než u ostatních)
 \end{description}
 
-\subsubsection{Srovnání zobrazovacích technologií (principy a vlastnosti)}
+\subsection{Srovnání zobrazovacích technologií (principy a vlastnosti)}
 LCD obrazovky pracují jako světelný ventil s podsvícením, plazmové obrazovky vytvářejí světlo výbojem v plynu a OLED zobrazovače vyzařují světlo přímo z jednotlivých bodů. LCD mají velmi nízký příkon a malou tloušťku, plazma nabízí dobré barvy a široký pozorovací úhel, zatímco OLED kombinuje vysoký kontrast s nízkou tloušťkou a rychlou odezvou
 
 
 Televizní informační systémy (úrovně teletextu, multimediální platformy MHP a HbbTV) a kódování multimediálních signálů (zdrojové a kanálové kódování, digitalizace obrazového toku, makrobloky).
 
-\section{Čtvrtá otázka}
-\subsection{Televizní informační systémy}
+\chapter{Čtvrtá otázka}
+\section{Televizní informační systémy}
 
-\subsubsection{úrovně teletextu}
+\subsection{úrovně teletextu}
 Teletext je doplňková datová služba přenášená spolu s televizním signálem.\\
 Informace se zobrazuje na obrazovce televizního přijímače ve formě textu
 nebo grafických znaků.\\
@@ -549,14 +549,14 @@ Teletext rozlišuje 5 kvalitativních úrovní textového zobrazení (větší �
 \end{itemize}
 Teletext je organizován do osmi magazínů, tedy na 800 stránek s čísly od 100 do 899. Každá stránka má 25 viditelných řádků, přičemž první řádek tvoří záhlaví s číslem stránky, programem, datem a časem.
 
-\subsubsection{multimediální platforma MHP }
+\subsection{multimediální platforma MHP }
 Společně se signálem teletextu mohou být přenášena i další data doplňkových informací,
 například rozhlasové programy, případně různé služby pro účely zábavy nebo obchodu
 označované názvem platforma \textbf{MHP} \textit{(Multimedia Home Platform)}
 Multimediální platforma pro digitální televizní vysílání, která rozšiřuje televizní signál o datové a interaktivní služby.\\
 MHP je tedy určena pro digitální přijímače, které kromě samotného televizního programu umožňují i práci s doplňkovými aplikacemi a daty.
 
-\subsubsection{multimediální platforma HbbTV}
+\subsection{multimediální platforma HbbTV}
 Hybridní televizní platforma propojující klasické televizní vysílání s širokopásmovým \textbf{internetem}.\\
 V praxi tím umožňuje kombinovat běžné vysílání s online aplikacemi, doplňkovými informacemi a zpětnou interakcí diváka.\\
 Nabídka služeb se aktivuje stisknutím červeného tlačítka na dálkovém ovladači. Stisknutím se otevře nabídka s:
@@ -566,9 +566,9 @@ Nabídka služeb se aktivuje stisknutím červeného tlačítka na dálkovém ov
 	\item iVysílání - přístup k databázi pořadů umístěných na internetových stránkách České televize
 \end{itemize}
 
-\subsection{Kódování multimediálních signálů}
+\section{Kódování multimediálních signálů}
 Zdrojové kódování slouží ke snížení datového objemu signálu, tedy k odstranění nadbytečné informace v obrazu, zvuku nebo jiných multimediálních datech. Kanálové kódování naopak přidává ochranné informace pro přenos po kanálu, aby bylo možné detekovat a případně opravit chyby vzniklé při přenosu. 
-\subsubsection{zdrojové kódování}
+\subsection{zdrojové kódování}
 Výsledkem zdrojového kódování je zmenšení datového toku při co nejmenším zhoršení subjektivní kvality obrazu.
 Provádíme za účelem odstranění (u řeči, zvuku, obrazu, videu):
 \begin{itemize}
@@ -576,7 +576,7 @@ Provádíme za účelem odstranění (u řeči, zvuku, obrazu, videu):
 	\item Irelevance (zbytečná data) - data, která lidské smysly nedokáží vnímat, nebo nejsou důležité; nevratný proces \underline{ztrátová komprese}
 \end{itemize}
 
-\subsubsection{Kanálové kódování}
+\subsection{Kanálové kódování}
 Provádíme za účelem zvýšení odolnosti signálu proti chybám v přenosovém kanálu:
 \begin{itemize}
 	\item přidáním redundance pro detekci nebo opravu chyb (Reed-Solomon)
@@ -584,7 +584,7 @@ Provádíme za účelem zvýšení odolnosti signálu proti chybám v přenosov�
 	\item samoopravné kódy: LDPC (Tannerův graf)
 \end{itemize}
 
-\subsubsection{Digitalizace obrazového toku}
+\subsection{Digitalizace obrazového toku}
 Analogový signál se převádí na digitální signál ve třech základních krocích:
 \begin{itemize}
 	\item \textbf{vzorkování} (spojitý signál se snímán v diskrétních časových okamžicích) - Aby bylo možné původní signál z rekonstruovaných vzorků správně obnovit, musí být splněna \textbf{Nyquistova podmínka}. Ta říká, že vzorkovací kmitočet musí být alespoň dvojnásobný oproti nejvyššímu kmitočtu obsaženému v signálu:
@@ -605,19 +605,19 @@ Analogový signál se převádí na digitální signál ve třech základních k
 \end{itemize}
 Proces se nazývá PCM (půlzní kódovaná modulace). Výsledkem je digitální obrazový tok, který lze efektivně přenášet, ukládat a dále komprimovat, protože obsahuje značné množství nadbytečné informace.
 
-\subsubsection{Makrobloky}
+\subsection{Makrobloky}
 Při kompresi digitálního obrazu se obraz dělí na větší celky (u JPEG pevně na bloky 8x8, u jiných kodeků dynamicky podle lokálního obsahu obrazu, např.: 2x2, 16x16), které se označují jako makrobloky. Tyto celky umožňují zpracovávat obraz po částech a využívat podobnost sousedních oblastí obrazu. Díky tomu lze snížit datový tok při zachování přijatelné obrazové kvality. Makrobloky jsou tedy základním stavebním prvkem moderní komprese multimediálních obrazových signálů.
 
 
-\section{Pátá otázka}
-\subsection{Zdrojové kódování obrazových signálů}
+\chapter{Pátá otázka}
+\section{Zdrojové kódování obrazových signálů}
 Výsledkem zdrojového kódování je zmenšení datového toku při co nejmenším zhoršení subjektivní kvality obrazu.
 Provádíme za účelem odstranění (u řeči, zvuku, obrazu, videu):
 \begin{itemize}
 	\item Redundance (nadbytečná data) - data, co se opakují/lze je odvodit od ostatních; vratný proces, \underline{bezztrátová komprese}
 	\item Irelevance (zbytečná data) - data, která lidské smysly nedokáží vnímat, nebo nejsou důležité; nevratný proces \underline{ztrátová komprese}
 \end{itemize}
-\subsubsection{redukce redundance a irelevance}
+\subsection{redukce redundance a irelevance}
 Redukce redundance: 
 \begin{itemize}
 	\item \textbf{Huffmanovým kódováním} (neadaptivní)
@@ -642,7 +642,7 @@ Redukce irelevance:
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{vzorkovací formáty}
+\subsection{vzorkovací formáty}
 Před vlastní kompresí je obrazový signál digitalizován a rozdělen na složky jasu a barvy.\\
 Pro jasovou složku \textit{Y} se používá vzorkovací kmitočet 13,5 MHz, pro chrominanční složky \textit{C$_B$} a \textit{C$_R$} 6,75 MHz. Jednotlivé vzorky jsou kvantovány nejčastěji na 8 bitů.
 Základnní formáty:
@@ -670,7 +670,7 @@ Základnní formáty:
 	\label{fig:vzorkovani}
 \end{figure}
 
-\subsection{Komprimace videa}
+\section{Komprimace videa}
 Komprimace videa využívá podobné principy jako komprimace statických obrazů, ale navíc pracuje s \textbf{časovou redundancí}.\\
 
 \begin{itemize}
@@ -732,7 +732,7 @@ Komprimace videa využívá podobné principy jako komprimace statických obraz�
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{principy JPEG a MPEG-1/2/AVC/HEVC}
+\subsection{principy JPEG a MPEG-1/2/AVC/HEVC}
 \begin{itemize}
 	\item \textbf{JPEG} -určen pro komprimaci statických obrazů
 	\begin{enumerate}
@@ -791,13 +791,13 @@ Komprimace videa využívá podobné principy jako komprimace statických obraz�
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{skupiny snímků}
+\subsection{skupiny snímků}
 více viz výše: Komprimace videa\\
 Použití GOP umožňuje výrazně snížit datový tok, protože ne každý snímek musí být uložen celý. Referenční snímky I zajišťují nezávislý začátek sekvence, zatímco snímky P a B využívají podobnost mezi sousedními snímky. Tím se potlačuje časová redundance a komprese je podstatně účinnější než u samostatného kódování všech snímků.
-\subsubsection{predikce a vektory pohybu}
+\subsection{predikce a vektory pohybu}
 více viz výše: Komprimace videa\\
 Predikce je základní metoda pro redukci časové redundance ve videu. Kodér porovnává aktuální blok obrazu s blokem v referenčním snímku a místo celého bloku ukládá pouze rozdíl. Pokud se blok mezi snímky posouvá, určuje se jeho poloha pomocí \textbf{vektoru pohybu}. Ten popisuje směr a velikost posunu mezi aktuálním a referenčním blokem. 
-\subsubsection{entropické kódování}
+\subsection{entropické kódování}
 více viz výše: JPEG\\
 Využít statistické vlastnosti přenášených hodnot tak, aby často se vyskytující symboly měly krátké kódy a méně časté symboly kódy delší. Tím se sníží výsledná délka bitového toku bez další ztráty informace.
 
@@ -810,13 +810,13 @@ Využít statistické vlastnosti přenášených hodnot tak, aby často se vysky
 
 
 
-\section{Šestá otázka}
-\subsection{Zdrojové kódování zvukových signálů}
+\chapter{Šestá otázka}
+\section{Zdrojové kódování zvukových signálů}
 Podobně jako obrazový signál, obsahuje i zvukový signál redundanci a irelevanci.
 Zatímco redukce redundance zvukového signálu není příliš podstatná, redukce irelevance se využívá k výraznému snížení přenosové rychlosti.
 Využívá se přitom metod založených na vnímání zvuku lidským sluchem -- maskování slabších signálů silnými, které tak nejsou sluchem vnímány.
 
-\subsubsection{Redukce redundance a irelevance}
+\subsection{Redukce redundance a irelevance}
 Zvukový signál se digitalizuje vzorkovacím kmitočtem $f_{vz} = 48\,\text{kHz}$ a kvantováním na $b = 16\,\text{bit}$, čímž vzniká přenosová rychlost:
 \[
 R = f_{vz} \cdot b = 48\,000 \cdot 16 = 768\,\text{kbit/s}.
@@ -828,7 +828,7 @@ Cílem zdrojového kódování je tuto rychlost výrazně snížit (na cca 200\,
     \item \textbf{Redukce irelevance} -- klíčová metoda; odstraňuje složky, které lidský sluch nedokáže vnímat (složky pod prahem slyšitelnosti nebo maskované silnějšími složkami).
 \end{itemize}
 
-\subsubsection{Frekvenční a časové maskování}
+\subsection{Frekvenční a časové maskování}
 Člověk vnímá zvuk v pásmu přibližně 16\,Hz až 16\,kHz. Silnější složky zvuku mohou způsobit, že slabší složky nejsou sluchem vnímány -- tento jev se nazývá \textbf{maskovací jev}.
 
 \begin{itemize}
@@ -843,7 +843,7 @@ Cílem zdrojového kódování je tuto rychlost výrazně snížit (na cca 200\,
     \label{fig:prahy}
 \end{figure}
 
-\subsubsection{Psychoakustický model}
+\subsection{Psychoakustický model}
 Psychoakustický model je součástí kodéru a modeluje psychoakustické vlastnosti lidského sluchu, aby se při kompresi zvuku odstranilo to, co člověk stejně neslyší nebo vnímá jen velmi slabě.
 \begin{itemize}
     \item Vstupní PCM signál je transformován FFT a spektrum se rozdělí do \textbf{32 dílčích kmitočtových pásem}, každé s šířkou 750\,Hz (subpásmové kódování).
@@ -859,18 +859,18 @@ Psychoakustický model je součástí kodéru a modeluje psychoakustické vlastn
     \label{fig:maskovani}
 \end{figure}
 
-\subsection{Komprimace audia -- principy MPEG}
+\section{Komprimace audia -- principy MPEG}
 Využívá kombinaci bezeztrátového a ztrátového přístupu. Převádí zvukový signál do takové podoby, aby bylo možné odstranit redundanci a irelevanci s využitím psychoakustického modelu. Výsledkem je výrazné snížení datového toku při zachování dobré posluchačské kvality.\\
 Audio MPEG využívá: vzorkování, kvantování, psychoakustické vyhodnocení a následné entropické kódování. Cíl: přiřazení co nejvíce bitů těm částem spektra, které jsou pro vnímání nejdůležitější (složky, málo významné kvantovány hruběji).
 
-\subsubsection{Zvukový standard MPEG-1}
+\subsection{Zvukový standard MPEG-1}
 \begin{itemize}
     \item \textbf{MPEG-1, úroveň 1 (Layer 1)} -- nejjednodušší; rámec obsahuje 384 vzorků (8\,ms), maximální přenosová rychlost 448\,kbit/s; pro spotřební elektroniku.
     \item \textbf{MPEG-1, úroveň 2 (Layer 2)} -- základ standardu MUSICAM pro digitální rozhlasové vysílání DAB; rámec obsahuje 1152 vzorků (24\,ms), tři činitele měřítka; lepší kvalita při nižších bitových rychlostech; používá se v evropském DVB.
     \item \textbf{MPEG-1, úroveň 3 (Layer 3)} -- označovaná MP3; využívá MDCT (modifikovaná DCT); největší komprese, složitější dekodér; v DVB se nepoužívá.
 \end{itemize}
 
-\subsubsection{Zvukový standard MPEG-2 a prostorový zvuk}
+\subsection{Zvukový standard MPEG-2 a prostorový zvuk}
 Standard MPEG-2 se používá pro přenos vícekanálového zvuku (prostorový zvuk) u digitální televize DVB.
 \begin{itemize}
     \item Používá \textbf{poloviční vzorkovací kmitočet} (24\,kHz, 22,05\,kHz nebo 16\,kHz) oproti MPEG-1 -- v užším subpásmu je práh kvantizačního šumu vyšší a dosáhne se nižší bitová rychlost při lepší kvalitě.
@@ -887,14 +887,14 @@ Standard MPEG-2 se používá pro přenos vícekanálového zvuku (prostorový z
 \end{figure}
 
 
-\section{Sedmá otázka}
-\subsection{Multiplexování}
+\chapter{Sedmá otázka}
+\section{Multiplexování}
 Po komprimaci obrazového a zvukového signálu jsou komprimované toky uloženy do vyrovnávacích pamětí a rozděleny do paketů.
 
-\subsubsection{Elementární toky (Elementary Streams -- ES)}
+\subsection{Elementární toky (Elementary Streams -- ES)}
 Toky obsahují komprimovaná data jednotlivých složek TV programu (obrazový tok, zvukový tok). Oddělené zpracování je výhodné, protože každá složka má jiné nároky na přenosovou rychlost i časovou synchronizaci. Elementární tok je výstupní bitový tok jednoho kodéru (obrazového nebo zvukového). Tvoří základ pro tvorbu paketizovaných struktur.
 
-\subsubsection{Paketizovaný elementární tok -- PES}
+\subsection{Paketizovaný elementární tok -- PES}
 Elementární toky (obrazový, zvukový, datový) se rozdělují na \textbf{PES pakety} (Packetized Elementary Stream):
 \begin{itemize}
     \item Paket obsahuje záhlaví (6\,B) se startovacím kódem, identifikací PID a délkou paketu.
@@ -902,7 +902,7 @@ Elementární toky (obrazový, zvukový, datový) se rozdělují na \textbf{PES 
     \item Data paketu mají proměnnou délku (max 65\,526\,B).
 \end{itemize}
 
-\subsubsection{Programový tok (Program Stream -- PS)}
+\subsection{Programový tok (Program Stream -- PS)}
 Multiplexováním PES paketů jednoho programu vzniká \textbf{programový tok}:
 \begin{itemize}
     \item Určen pro záznam signálu ve studiu nebo na paměťové médium, není přenášen na velkou vzdálenost.
@@ -910,7 +910,7 @@ Multiplexováním PES paketů jednoho programu vzniká \textbf{programový tok}:
     \item Synchronizaci zajišťuje signál SCR (System Clock Reference) s kmitočtem 27\,MHz a časové značky PTS/DTS.
 \end{itemize}
 
-\subsubsection{Transportní tok (Transport Stream -- TS)}
+\subsection{Transportní tok (Transport Stream -- TS)}
 Transportní tok může obsahovat více programů současně (šíření více stanic najednou). Pro přenos signálu DVB (pozemní, družicové i kabelové vysílání) se používá \textbf{transportní tok}:
 \begin{itemize}
     \item PES pakety s proměnnou délkou se dělí na úseky po 184\,B a doplňují záhlavím (4\,B) -- vznikají \textbf{transportní pakety} o délce 188\,B.
@@ -926,17 +926,17 @@ Transportní tok může obsahovat více programů současně (šíření více s
     \label{fig:transptok}
 \end{figure}
 
-\subsection{Kanálové kódování}
+\section{Kanálové kódování}
 Chyby v přenosovém kanálu mohou být jednotlivé bitové chyby nebo shluky chyb (vznikají rušením, úniky nebo odrazy signálu). Přidané kontrolní informace vysílačem do datového toku umožní přijímači některé chyby opravit bez nutnosti opakovaného přenosu. Kanálové kódování přidává redundanci za účelem ochrany přenášeného signálu proti chybám v přenosovém kanálu. Používá se \textbf{dopředná chybová korekce FEC} (Forward Error Correction) ve dvou vrstvách.
 
-\subsubsection{Vnější kódování FEC1 -- Reed-Solomonův kód}
+\subsection{Vnější kódování FEC1 -- Reed-Solomonův kód}
 \begin{itemize}
     \item Blokový kód \textbf{RS(204, 188)}: ke 188\,B transportního paketu se přidá 16\,B opravných.
     \item Kód umožní na přijímací straně opravu až \textbf{8 chybných bytů} v jednom bloku.
     \item Za kodérem FEC1 se zařazuje \textbf{vnější prokládání} na úrovni bytů -- ochrana proti shlukových chybám.
 \end{itemize}
 
-\subsubsection{Vnitřní kódování FEC2 -- konvoluční kód}
+\subsection{Vnitřní kódování FEC2 -- konvoluční kód}
 \begin{itemize}
     \item \textbf{Konvoluční kód} ovlivňuje jednotlivé bity vzájemnými exkluzivními součty přes posuvný registr.
     \item Kódový poměr $R$ bývá 1/2, 2/3, 3/4, 5/6 nebo 7/8 -- čím menší poměr, tím silnější ochrana, ale nižší přenosová rychlost.
@@ -944,7 +944,7 @@ Chyby v přenosovém kanálu mohou být jednotlivé bitové chyby nebo shluky ch
     \item Dekódování se provádí \textbf{Viterbiho algoritmem}.
 \end{itemize}
 
-\subsubsection{Prokládání (Interleaving)}
+\subsection{Prokládání (Interleaving)}
 Prokládání zabezpečuje signál proti \textbf{shlukových chybám} (burst errors):
 \begin{itemize}
     \item Data jsou v kodéru zapisována do paměti po řádcích a čtena po sloupcích. Shluková chyba v přenosovém kanálu se tak po inverzním prokládání v dekodéru rozloží na jednotlivé osamocené chybné bity, které lze opravit samoopravným kódem.
@@ -958,8 +958,8 @@ Prokládání zabezpečuje signál proti \textbf{shlukových chybám} (burst err
     \label{fig:razenibloku}
 \end{figure}
 
-\subsection{Digitální modulace}
-\subsubsection{M-PSK (Phase Shift Keying)}
+\section{Digitální modulace}
+\subsection{M-PSK (Phase Shift Keying)}
 Modulace s klíčováním fáze -- informace je přenášena ve fázi nosné:
 \begin{itemize}
     \item \textbf{QPSK} (Quadrature PSK, 4PSK) -- 4 stavy nosné, každý vyjadřuje \textbf{dibit} (2 bity). Vstupní bitový tok se rozdělí do větví I (synfázní) a Q (kvadraturní). Modulace je odolná vůči rušení amplitudy -- informace je pouze ve fázi. Používá se pro \textbf{DVB-S}.
@@ -973,7 +973,7 @@ Modulace s klíčováním fáze -- informace je přenášena ve fázi nosné:
     \label{fig:qpsk}
 \end{figure}
 
-\subsubsection{M-QAM (Quadrature Amplitude Modulation)}
+\subsection{M-QAM (Quadrature Amplitude Modulation)}
 Modulace s kvadraturní amplitudovou modulací -- informace je přenášena jak ve fázi, tak v amplitudě nosné:
 \begin{itemize}
     \item \textbf{16QAM} -- 16 stavů, každý vyjadřuje 4 bity; konstelační diagram tvoří mřížku $4 \times 4$ bodů.
@@ -991,7 +991,7 @@ Modulace s kvadraturní amplitudovou modulací -- informace je přenášena jak 
     \label{fig:diagr16a64}
 \end{figure}
 
-\subsubsection{OFDM (Orthogonal Frequency Division Multiplex)}
+\subsection{OFDM (Orthogonal Frequency Division Multiplex)}
 Pro pozemní digitální TV přenos DVB-T/T2 se používá \textbf{OFDM} z důvodu odolnosti vůči vícecestnému šíření (ISI -- Inter Symbol Interference):
 \begin{itemize}
     \item Sériový bitový tok se \textbf{mapuje} do skupin $m$ bitů (symbolů) a \textbf{demultiplexuje} do $n$ paralelních větví -- každá větev moduluje jednu ze $n$ nosných.
@@ -1010,11 +1010,11 @@ Pro pozemní digitální TV přenos DVB-T/T2 se používá \textbf{OFDM} z důvo
 \end{figure}
 
 
-\section{Osmá otázka}
-\subsection{Pozemní televizní vysílání a standardy DVB-T/T2}
+\chapter{Osmá otázka}
+\section{Pozemní televizní vysílání a standardy DVB-T/T2}
 DVB-T/T2 umožňují šířit v jednom kanálu více televizních programů a doplňkových služeb (lepší využití kmitočtového pásma).
 
-\subsubsection{Standard DVB-T a rámec OFDM}
+\subsection{Standard DVB-T a rámec OFDM}
 \textbf{OFDM} rozděluje přenášená data na velký počet vzájemně ortogonálních subnosných (díky tomu je přenos odolný proti vícecestnému šíření, odrazům a tím mezisymbolové interferenci).\\
 Signál DVB-T využívá modulaci \textbf{COFDM} (Coded OFDM) -- kombinaci OFDM a kanálového kódování (FEC1 + FEC2).
 \begin{itemize}
@@ -1034,7 +1034,7 @@ Signál DVB-T využívá modulaci \textbf{COFDM} (Coded OFDM) -- kombinaci OFDM 
     \label{fig:dbvt}
 \end{figure}
 
-\subsubsection{Pilotní nosné}
+\subsection{Pilotní nosné}
 Pilotní nosné slouží pro obnovu přijatého signálu (snižují chybovost demodulace). Kromě datových nosných jsou v rámci OFDM přenášeny speciální nosné:
 \begin{itemize}
     \item \textbf{Spojité pilotní nosné} -- slouží k synchronizaci kmitočtu a fáze; pevné polohy v rámci.
@@ -1042,7 +1042,7 @@ Pilotní nosné slouží pro obnovu přijatého signálu (snižují chybovost de
     \item \textbf{Nosné TPS} (Transmission Parameter Signalling) -- přenášejí systémové informace o použité modulaci, ochranném intervalu a přenosovém módu.
 \end{itemize}
 
-\subsubsection{Volba ochranného intervalu}
+\subsection{Volba ochranného intervalu}
 Ochranný interval je krátký časový úsek vložený mezi symboly. Umožňuje, aby se opožděné odrazy předchozího symbolu nepromítly do aktuálního symbolu a nezpůsobily mezisymbolovou interferenci. Ochranný interval NEzabírá místo datovým bitům, ale prodlužuje dobu trvání jednoho OFDM symbolu (kratší interval $\Rightarrow$ vyšší přenosová kapacita, ale vyžaduje kvalitnější přenosové podmínky).\\
 Ochranný interval $T_{GI}$ se volí jako zlomek doby trvání užitečného symbolu $T_U$:
 \[
@@ -1060,7 +1060,7 @@ T_{GI} \in \left\{\frac{T_U}{4},\ \frac{T_U}{8},\ \frac{T_U}{16},\ \frac{T_U}{32
     \label{fig:ochrintv}
 \end{figure}
 
-\subsubsection{Volba parametrů kódování}
+\subsection{Volba parametrů kódování}
 Přenosová rychlost závisí na kombinaci modulace, kódového poměru a ochranného intervalu:
 \begin{itemize}
     \item \textbf{Modulace}: QPSK, 16QAM, 64QAM.
@@ -1069,7 +1069,7 @@ Přenosová rychlost závisí na kombinaci modulace, kódového poměru a ochran
     \item Vyšší modulace a kódový poměr $\Rightarrow$ vyšší rychlost, ale nižší odolnost vůči rušení.
 \end{itemize}
 
-\subsubsection{Standard DVB-T2 a rotovaná konstelace}
+\subsection{Standard DVB-T2 a rotovaná konstelace}
 DVB-T2 je druhá generace standardu, která přináší výrazně vyšší přenosovou kapacitu:
 \begin{itemize}
     \item \textbf{Vyšší modulace}: navíc 256QAM.
@@ -1086,7 +1086,7 @@ DVB-T2 je druhá generace standardu, která přináší výrazně vyšší přen
     \label{fig:klasapootoc}
 \end{figure}
 
-\subsubsection{Přijímací antény pro DVB-T}
+\subsection{Přijímací antény pro DVB-T}
 \begin{itemize}
     \item DVB-T/T2 využívá \textbf{jednofrekvenční sítě SFN} (Single Frequency Network) -- všechny vysílače pracují na stejném kmitočtu. Signál sousedního vysílače se nemusí rušit, ale může přicházet se zpožděním (záleží na délce GI).
     \item Pro příjem DVB-T není nutná úzce směrová anténa (na rozdíl od analogového TV).
@@ -1095,10 +1095,10 @@ DVB-T2 je druhá generace standardu, která přináší výrazně vyšší přen
 \end{itemize}
 
 
-\section{Devátá otázka}
-\subsection{Družicové televizní vysílání a standardy DVB-S/S2}
+\chapter{Devátá otázka}
+\section{Družicové televizní vysílání a standardy DVB-S/S2}
 
-\subsubsection{Geostacionární dráha a výhody družicového vysílání}
+\subsection{Geostacionární dráha a výhody družicového vysílání}
 Družice pro TV přenosy se pohybují na geostacionární dráze GEO (Geostationary Earth Orbit) v rovině rovníku ve výšce \textbf{35\,786\,km} nad povrchem Země. Při rychlosti 3075\,m/s je odstředivá síla rovna přitažlivé síle Země -- družice se jeví ze Země v neměnné poloze.
 \begin{itemize}
     \item[$\oplus$] Není nutno budovat dílčí zesilovací stanice.
@@ -1109,7 +1109,7 @@ Družice pro TV přenosy se pohybují na geostacionární dráze GEO (Geostation
     \item[$\circleddash$] Omezená životnost družic (cca 10 let).
 \end{itemize}
 
-\subsubsection{Frekvenční pásma uplinku a downlinku}
+\subsection{Frekvenční pásma uplinku a downlinku}
 Rádiové spektrum je rozděleno do pojmenovaných pásem. Pro TV družicové přenosy se nejvíce využívají:
 \begin{itemize}
     \item \textbf{Pásmo C}: uplink 5,9--7,0\,GHz, downlink 3,4--4,2\,GHz; pevná družicová služba PDS.
@@ -1125,13 +1125,13 @@ Pro individuální příjem TV programů (DVB-S/S2) se v Evropě nejčastěji vy
     \label{fig:uladl}
 \end{figure}
 
-\subsubsection{Modulace a standardy DVB-S/S2}
+\subsection{Modulace a standardy DVB-S/S2}
 \begin{itemize}
     \item \textbf{DVB-S}: modulace \textbf{QPSK}; informace přenášena pouze ve fázi nosné, nikoli v amplitudě -- výhodné pro velké vzdálenosti (útlum signálu); datová rychlost až 280\,Mbit/s, šířka pásma kanálu až 72\,MHz.
     \item \textbf{DVB-S2}: druhá generace; navíc modulace \textbf{8PSK} a \textbf{16(32)APSK}; určen pro HDTV, interaktivní datové služby a širokopásmové aplikace.
 \end{itemize}
 
-\subsubsection{Družicový transpondér}
+\subsection{Družicový transpondér}
 Na jedné družici je více transpondérů, přičemž každý obsluhuje určité frekvenční pásmo. Prostřednictvím jediné družice lze tak přenášet mnoho televizních programů, rozhlasových stanic i datových služeb. Transpondér je část přenosového kanálu mezi přijímací a vysílací anténou na palubě družice:
 \begin{itemize}
     \item Přijatý signál z uplinku prochází pásmovou propustí BPF1 a předzesilovačem.
@@ -1148,7 +1148,7 @@ Na jedné družici je více transpondérů, přičemž každý obsluhuje určit�
     \label{fig:transp}
 \end{figure}
 
-\subsubsection{Přijímací anténa}
+\subsection{Přijímací anténa}
 Pro příjem TV signálů z družic se používají:
 \begin{itemize}
     \item \textbf{Parabolická anténa} -- soustřeďuje slabý signál přicházející z družice do ohniska, kde je umístěn LNB (LNB signál nejprve zesílí a poté jej frekvenčně převádí na nižší mezifrekvenci, která se lépe vede koaxiálním kabelem do přijímače); větší průměr $\Rightarrow$ větší zisk (35--50\,dB); nevýhoda: v zimě drží sníh.
@@ -1165,7 +1165,7 @@ Minimální průměr antény závisí na hodnotě EIRP (Effective Isotropic Radi
     \label{fig:ofsant}
 \end{figure}
 
-\subsubsection{Vnější jednotka -- LNB}
+\subsection{Vnější jednotka -- LNB}
 LNB (Low Noise Block) je umístěna v ohnisku antény. Má velmi nízký vlastní šum, protože pracuje s velmi slabým přijatým signálem. Provádí:
 \begin{itemize}
     \item \textbf{Výběr polarizace}: mechanicky nebo magneticky; volba z vnitřní jednotky napětím (13\,V = horizontální H, 17\,V = vertikální V).
@@ -1182,7 +1182,7 @@ LNB (Low Noise Block) je umístěna v ohnisku antény. Má velmi nízký vlastn�
     \label{fig:lnb}
 \end{figure}
 
-\subsubsection{Vnitřní jednotka a protokol DiSEqC}
+\subsection{Vnitřní jednotka a protokol DiSEqC}
 \textbf{Vnitřní jednotka} (set-top-box, přijímač DVB-S/S2) zpracovává signál z LNB:
 \begin{itemize}
     \item Druhé směšování a zesílení mezifrekvenčního signálu.
@@ -1198,10 +1198,10 @@ Pro příjem signálů z více družic se využívá protokol \textbf{DiSEqC} (D
 \end{itemize}
 
 
-\section{Desátá otázka}
-\subsection{Televizní přijímače DVB}
+\chapter{Desátá otázka}
+\section{Televizní přijímače DVB}
 
-\subsubsection{Bloková koncepce přijímače DVB}
+\subsection{Bloková koncepce přijímače DVB}
 Televizní přijímač DVB zpracovává digitální signály DVB-T, DVB-S nebo DVB-C (zpracování přijatých signálů od antény až po obraz a zvuk na výstupu). Jeho bloková struktura je:
 \begin{itemize}
     \item \textbf{Vstupní díl} (tuner) -- zesílení a transpozice VF signálu do mezifrekvenčního pásma.
@@ -1222,13 +1222,13 @@ Televizní přijímač DVB zpracovává digitální signály DVB-T, DVB-S nebo D
     \label{fig:dbvprijm}
 \end{figure}
 
-\subsubsection{IDTV a set-top-box}
+\subsection{IDTV a set-top-box}
 \begin{itemize}
     \item \textbf{STB (Set Top Box)} -- přídavné zařízení zapojené mezi anténu a klasický analogový TVP. Konvertuje digitální signál DVB na analogový PAL, SECAM nebo NTSC. Obsahuje všechny dekodovací bloky včetně deskrambleru pro placené programy. Dálkové ovládání STB je vlastní.
     \item \textbf{IDTV (Integrated Digital TV Set)} -- integrovaný digitální TV přijímač. Kombinuje analogový i digitální přijímač v jednom zařízení. Po přechodu na čistě digitální vysílání jsou vyráběny pouze digitální TVP s možností připojení zpětného kanálu (internet, interaktivita) a podporou multimediální platformy MHP.
 \end{itemize}
 
-\subsubsection{Vstupní díl a tuner}
+\subsection{Vstupní díl a tuner}
 Vstupní díl (tuner, kanálový volič) přijímá VF signál z antény nebo jiného zdroje:
 \begin{itemize}
     \item Anténní vstup (75\,$\Omega$ nesymetricky) s ochrannými diodami a odlaďovači rušivých kmitočtů.
@@ -1246,16 +1246,16 @@ Vstupní díl (tuner, kanálový volič) přijímá VF signál z antény nebo ji
     \label{fig:televprijm}
 \end{figure}
 
-\subsubsection{Dálkové ovládání}
+\subsection{Dálkové ovládání}
 \begin{itemize}
     \item Přenos povelů výhradně \textbf{infračerveným zářením (IR)}.
     \item Umožňuje nastavení všech uživatelských funkcí: volba programu, hlasitost, jas, teletext apod.
     \item Některé TVP mají \textbf{servisní mód} dálkového ovládání pro seřizování interních obvodů TVP.
 \end{itemize}
 
-\subsection{Standardy pro přenos s vysokým rozlišením}
+\section{Standardy pro přenos s vysokým rozlišením}
 
-\subsubsection{Formáty HDTV}
+\subsection{Formáty HDTV}
 HDTV (High Definition Television) poskytuje kvalitnější obraz s větším počtem bodů, subjektivně ostřejší obraz a prostorový zvuk.
 V Evropě (DVB) se používají formáty:
 \begin{itemize}
@@ -1274,7 +1274,7 @@ Obrazovky pro HDTV: HD Ready ($\geq$ 1024~$\times$~768), \textbf{Full HD} (1920~
     \label{fig:hdtvform}
 \end{figure}
 
-\subsubsection{Perspektiva přenosu UHDTV}
+\subsection{Perspektiva přenosu UHDTV}
 Ultra High Definition Television (UHDTV) jsou formáty budoucnosti:
 \begin{itemize}
     \item \textbf{4K (UHD-1)}: 3840 $\times$ 2160 bodů ($\approx$ 8\,Mpixelů); označení 4K podle počtu bodů v řádku; pro digitální kino a profesionální produkci.
