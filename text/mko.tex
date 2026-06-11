@@ -214,10 +214,10 @@ Vícestavová modulace:
 \section{Systémy s mnohonásobným přístupem}
 Princip: více nezávislých uživatelů odesílá k jednomu společnému médiu (např.: mobilní systém s mnoha uživateli)
 \begin{itemize}
-	\item FDMA (Freq Division Multiple Access): rozdělení kmitočtového pásma na jendotlivé kanály $\rightarrow$ každý uživatel dostane přidělenou svou vlastní frekvenci
+	\item FDMA (Freq Division Multiple Access): rozdělení kmitočtového pásma na jednotlivé kanály $\rightarrow$ každý uživatel dostane přidělenou svou vlastní frekvenci
 	\item TDMA (Time Division Multiple Access): všichni uživatelé vysílají na stejné frekvenci, ale střídají se v čase $\rightarrow$ uživatelovi se přidělí krátký časový úsek, rychle se odešle zpráva a uživatel poté čeká na další kolo přidělování
 	\item CDMA (Code Division Multiple Access): všichni uživatelé vysílají na stejné frekvenci i ve stejném čase; data jsou šifrována unikátními klíči 
-	\item ALOHA: data se odešlou kdykoliv; pokud se 2 signály "srazí", vysílači přijde potvrzení o nepřijetí a data se odešlou znovu s náhodným časovým zpožděním znovu
+	\item ALOHA: data se odešlou kdykoliv; pokud se 2 signály "srazí", vysílači přijme potvrzení o nepřijetí a data se odešlou znovu s náhodným časovým zpožděním znovu (přijatý kód musí mít správný formát zápisu, který se při srážce a spojení dvou signálů poškodí)
 \end{itemize}
 
 \section{Metody multiplexování}
@@ -580,7 +580,7 @@ Podpora MIMO: využití více vysílacích i přijímacích antén pro současn�
 \end{figure}
 Jednotlivé prvky architektury:
 \begin{itemize}
-	\item \textbf{eNodeB} - základnová stanice (anténa), řídící jendotka rádiové sítě
+	\item \textbf{eNodeB} - základnová stanice (anténa), řídící jednotka rádiové sítě
 	\begin{itemize}	
 		\item modulace
 		\item rozdělování pásem uživatelům
@@ -658,8 +658,8 @@ Použití systému OFDMA (více uživatelů sdílí stejné spektrum, každý do
 	\item \textbf{Výhody:} Vysoká spektrální účinnost, dobrá odolnost vůči mezisymbolovým interferencím (ISI) díky ochrannému intervalu (\textit{CP Cyclic Prefix}), snadná implementace MIMO.
 	\item \textbf{Nevýhody:} Značné kolísání obálky signálu, což vede k vysokému PAPR (Poměr maximálního s středního výkonu signálu). To ale nevadí základnové stanici (eNodeB), která má dostatek napájecího výkonu.
 	\item Zdrojové prostředky (RB) jsou přidělovány uživatelům na základě jejich požadavků, aktuálním stavu sítě a časové kmitočtové mpy úniků
-	\item Nejmenší kmitočtovou časovou jendotkou je zdrojový blok RB (resource block)
-	\item Nejmenší přenosovou jendotkou je SB (scheduling block), tvořený dvěma PRB, které na sebe bezprostředně časově navazují (12 subnosných $\times$ 0,5 ms)
+	\item Nejmenší kmitočtovou časovou jednotkou je zdrojový blok RB (resource block)
+	\item Nejmenší přenosovou jednotkou je SB (scheduling block), tvořený dvěma PRB, které na sebe bezprostředně časově navazují (12 subnosných $\times$ 0,5 ms)
 	\item Jednomu uživateli může být přiděleno i více zdrojových bloků, které mohou být rozprostřeny v dostupném kmitočtovém pásmu
 	\item V 1. a 5. OFDM symbolu v každém slotu se přenáeji referenční signály (v DL specifikují buňku, UE a službu MBSFN (= způsob vysílání, kdy více vysílačů vysílá stejný signál na stejné frekvenci, pro lepší pokrytí))
 	\begin{itemize}	
