@@ -221,7 +221,7 @@ Princip: více nezávislých uživatelů odesílá k jednomu společnému médiu
 \end{itemize}
 
 \section{Metody multiplexování}
-Princip: z jednoho bodu se odesílá více různých signálů do jednoho radiového kanálu (např.: rádio s mnoha stanicemi)
+Princip: z jednoho bodu se odesílá více různých signálů do jednoho radiového kanálu (např.: rádio s mnoha stanicemi) - odvozeno od mnohonásobného přístupu.
 \begin{itemize}
 	\item FDM (kmitočtový multiplex): rozdělení jednoho kanálu na několik frekvenčních pásem; signály se odesílají současně, ale každý na jiné frekvenci
 	\begin{description}
@@ -231,7 +231,7 @@ Princip: z jednoho bodu se odesílá více různých signálů do jednoho radiov
 	\item TDM (časový multiplex): všichni uživatelé používají stejný kanál, ale ne ve stejnou dobu; každý má přiřazen vlastní časový interval
 	\begin{description}
 		\item[$\oplus$] lepší využití kanálu než FDM (každý uživatel dostane celý kanál)
-		\item[$\circleddash$] přesná sycnhronizace (může vznikat zpoždění)
+		\item[$\circleddash$] přesná synchronizace (může vznikat zpoždění)
 	\end{description} 
 	\item CDM (kódový multiplex): všichni uživatelé vysílají ve stejném čase i pásmu, ale každý pomocí jiného kódu
 	\begin{description}	
@@ -242,12 +242,12 @@ Princip: z jednoho bodu se odesílá více různých signálů do jednoho radiov
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.45\linewidth]{"Obrazky/MKO/3. otazka/multiplexovani"}
-	\caption{Multiplexování v rekvenční, časové a kódové doméně}
+	\caption{Multiplexování ve frekvenční, časové a kódové doméně}
 	\label{fig:multiplexovani}
 \end{figure}
 
 \section{Proces rozprostírání signálu a výhody/nevýhody}
-Jev typický pro CDMA. Užitečný signál se násobí rozprostíracím šumovým kódem $\rightarrow$ umělé zvětšení šířky pásma a výkon se rozloží do širšího spektra. Na přijímači se stejný kód použije pro zpětné zúžení.\\
+Jev typický pro CDMA. Užitečný signál se násobí rozprostíracím šumovým kódem (např.: LSFR kódem - paralela s DE1) $\rightarrow$ umělé zvětšení šířky pásma a tím rozložení výkonu do širšího spektra. Na přijímači se stejný kód použije pro zpětné zúžení.\\
 Důvody použití:
 \begin{itemize}
 	\item Potlačení úzkopásmového rušení
@@ -277,7 +277,7 @@ Vytvoření spojení mezi účastníky $\rightarrow$ vyhrazené přenosové pás
 	\item Při přenosu signálu se využívá \textit{synchronní přenosový mód} (s konstantní přenosovou rychlostí signálu)
 \end{itemize}
 \subsection{Paketové}
-Tok data rozdělen na \textit{pakety} $\rightarrow$ ty se přenášejí samostatně a síť pro ně nedrží jednu trvale rezervovanou cestu.\\
+Tok data rozdělen na \textit{pakety} $\rightarrow$ ty se přenášejí samostatně a síť pro ně nedrží jednu, trvale rezervovanou, cestu.\\
 Přenos probíhá způsoby:
 \begin{itemize}
 	\item Služba bez spojení - vhodná pro přenos krátkých zpráv
@@ -292,7 +292,7 @@ Metoda využití více kanálů (cest) pro přenos jednoho signálu v případě
 Příčiny výpadku signálu:
 \begin{itemize}
 	\item Únik (Kolísání signálu v místě příjmu) způsobený změnami úrovní terénu, překážkami mezi (pohybující se) mobilní stanicí  a (statickou) základnovou stanicí
-	\item mnohacestným šířením mezi vysílačem a přijímačem, komplikovaným navíc pohybem TX a RX (vektorové sčítání signálů)
+	\item mnohacestným šířením mezi vysílačem a přijímačem, komplikovaným navíc ještě pohybem TX (= vysílač) a RX (= přijímač) $\rightarrow$ vektorové sčítání signálů
 \end{itemize}
 \begin{figure}[H]
 	\centering
@@ -308,7 +308,6 @@ Vytváření více kanálů:
 	\item \textbf{Frekvenční diverzita} - posílání stejných dat na různých frekvencích (odstup jednotlivých kmitočtů 2-4 \% kmitočtu nosné vlny)
 	\item \textbf{Časová diverzita} - posílání stejných dat s časovým odstupem (rámec TDM má délku až jednotky sekund - dlouhá doba přenosu)
 \end{itemize}
-\newpage
 Rozlišení diverzitních systémů podle počtu antén vysílače a přijímače:
 \begin{itemize}
 	\item \textbf{SISO} (single IN, single OUT) - 1 vysílá; 1 přijímá
@@ -340,8 +339,7 @@ Síť je obvykle tvořena:
 		\caption{Buňková struktura sítě s propojením bod-více bodů}
 		\label{fig:bunkovastruktura}
 	\end{figure}
-	\newpage
-	\item \textbf{Buňková struktura} - území rozděleno na velké množství menších oblastí (buněk). Uvnitř buňky je umístěna základová radiová stanice. Buňky mají různou velikost i tvar:
+	\item \textbf{Buňková struktura} - území rozděleno na velké množství menších oblastí (buněk). Uvnitř buňky je umístěna základnová radiová stanice. Buňky mají různou velikost i tvar:
 	\begin{itemize}	
 		\item \textbf{femtobuňka} (poloměr desítky \textit{m}) - pokrývá nepokryté části území mezi menšími piko nebo mikrobuňkami
 		\item \textbf{pikobuňka} (poloměr $<$50 \textit{m}) - pro místa s vysokou koncentrací uživatelů (nádraží, obchodní domy)
@@ -351,7 +349,7 @@ Síť je obvykle tvořena:
 \end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\linewidth]{"Obrazky/MKO/5. otazka/bunkovaStruktura2"}
+		\includegraphics[width=0.45\linewidth]{"Obrazky/MKO/5. otazka/bunkovaStruktura2"}
 		\caption{Ukázka systému buněk}
 		\label{fig:bunkovastruktura2}
 	\end{figure}
