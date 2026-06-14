@@ -346,20 +346,21 @@ Jasový signál \(U_Y\) nese informaci o jasu jednotlivých obrazových bodů. Z
 \[
 U_Y = 0{,}30\,U_R + 0{,}59\,U_G + 0{,}11\,U_B.
 \]
-Barevný televizní přenos musí být slučitelný s černobílým. Proto se přenáší:
+Barevný televizní přenos musí být slučitelný s černobílým (ČB přijímač musí z barevného signálu zobrazit alespoň jasový obraz, i když neumí zobrazit bravu).\\
+Proto se přenáší:
 \begin{itemize}
 	\item \textbf{jasový signál} \(U_Y\),
 	\item \textbf{chrominanční signály} \(U_R-U_Y\) a \(U_B-U_Y\).
 \end{itemize}
-Plný barevný signál BS obsahuje jasový signál, barevné informace a synchronizační složky. Barevné informace se přenášejí pomocí dvou chrominančních signálů, protože barevná rozlišovací schopnost oka je menší než rozlišovací schopnost pro jas. Proto mohou mít barevné signály menší šířku pásma než signál jasový.\\
-Pro obraz barevných pruhů se ve skriptech ukazuje, že bílá barva vznikne při \(U_R = U_G = U_B = 1\), černá při nulových hodnotách a ostatní barvy odpovídají kombinacím základních složek
+Plný barevný signál BS obsahuje jasový signál, barevné informace a synchronizační složky. Barevné informace se přenášejí pomocí dvou chrominančních signálů s menší šířkou pásma, protože barevná rozlišovací schopnost oka je menší než rozlišovací schopnost pro jas.\\
+V obrazu barevných pruhů se ukazuje, že bílá barva vznikne při \(U_R = U_G = U_B = 1\), černá při nulových hodnotách a ostatní barvy odpovídají kombinacím základních složek
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{"Obrazky/TVT/2. otazka/barevnySignal"}
 	\caption{Časový průběh úplného barevného signálu v soustavě NTSC}
 	\label{fig:barevnysignal}
 \end{figure}
-Synchronizační impulz barvy SIB (burst) se v TV přijímači používá k synchronizaci oscilátoru, který generuje barvonosnou složku, která se používá pro demodulaci barvonosného kanálu. Impulz se vkládá do zadní části zatemňovacího impulzu (ten největší peak ohraničující barevné pásmo; řídící signál, který určuje začátek obrazového intervalu; vysoký, aby jej přijímač spolehlivě poznal).
+Synchronizační impulz barvy SIB (burst) se v TV přijímači používá k synchronizaci oscilátoru, který generuje barvonosnou složku, která se používá pro demodulaci barvonosného kanálu. Impulz se vkládá do zadní části zatemňovacího impulzu (největší peak ohraničující barevné pásmo: řídící signál, který určuje začátek obrazového intervalu; vysoký, aby jej přijímač spolehlivě poznal).
 
 \section{Televizní přenosová soustava}
 \subsection{DVB}
@@ -367,18 +368,13 @@ Digitální televize navazuje na analogový přenos a přenáší obraz, zvuk i 
 Digitální televize přinesla vyšší využití přenosové kapacity, lepší odolnost proti rušení a možnost přenosu dalších datových služeb. Pro systémy DVB se využívá především multiplexace více programů do jednoho přenosového kanálu.\\
 Typy DVB:
 \begin{itemize}
+	\item \textbf{DVB-C}: kabelové vysílání, QAM
 	\item \textbf{DVB-S}: satelitní vysílání, QPSK, přenos přes družici, vyšší nároky na směrovou anténu
 	\item \textbf{DVB-T}: pozemní vysílání, modulace OFDM, odolnost proti vícecestnému šíření (potlačení ISI)
 	\item \textbf{DVB-T2} vylepšené pozemní vysílání, OFDM, vyšší datová rychlost, spektrální účinnost (=určuje kolik dat dokáže daný standard přenést za sekundu v určité frekvenční šířce pásma) a lepší využití pásma
 \end{itemize}
 
 \subsection{TV pásma a šířky jejich kanálů}
-Způsoby přenášení televizního signálu:
-\begin{itemize}
-	\item \textbf{Pozemní vysílání} - radiovými vlnami
-	\item \textbf{Kabelovým přenosem}
-	\item \textbf{Družicovým vysíláním}
-\end{itemize}
 Pro jednotlivé způsoby vysílání byla stanovena televizní pásma, která jsou rozdělena na jednotlivé televizní kanály.\\
 Rozdělení světa z pohledu kmitočtových pásem na oblasti:
 \begin{itemize}
@@ -443,14 +439,14 @@ Struktura snímače:
 	\item  plošná - obsahuje matici buněk (ve čtvercové/obdélníkové matici je několik milionů bodů)
 \end{itemize}
 \begin{itemize}
-	\item \textbf{FT (Frame Transfer)} -- obsahuje snímací část a paměťovou část; obrazový náboj se po skončení expozice přenese do paměťové části. Nevýhodou může být mazaní obrazu ve svislém směru při silném osvětlení.
-	\item \textbf{LT (Line Transfer)} -- mezi sloupci světlocitlivých buněk jsou vloženy vertikální posuvné registry, čímž se zmenšuje mazaní obrazu, ale snižuje se využití plochy snímače.
+	\item \textbf{FT (Frame Transfer)} -- obsahuje snímací část a paměťovou část; obrazový náboj se po skončení expozice přenese do paměťové části. Nevýhodou může být mazání obrazu ve svislém směru při silném osvětlení.
+	\item \textbf{LT (Line Transfer)} -- mezi sloupci světlocitlivých buněk jsou vloženy vertikální posuvné registry, čímž se zmenšuje mazání obrazu, ale snižuje se využití plochy snímače.
 	\item \textbf{FIT (Field Interline Transfer)} -- kombinuje vlastnosti FT a LT, takže omezuje mazaní obrazu a zároveň zachovává lepší využití snímací plochy.
 \end{itemize}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{"Obrazky/TVT/3. otazka/FTaLT"}
-	\caption{Princip snímačů: FT, LT, FIT}
+	\caption{Princip plošných snímačů: FT, LT, FIT}
 	\label{fig:ftalt}
 \end{figure}
 
@@ -471,7 +467,7 @@ Vlastnosti:
 Složeny z obrazových buněk (článků s LC) uspořádaných do řádků a sloupců, za kterými je zdroj bílého světla.\\
 Využívají vlastnost tekutého krystalu měnit propustnost světla podle velikosti budicího napětí. Samotný LCD prvek není zdrojem světla, ale funguje jako světelný ventil, proto potřebuje podsvícení.\\
 Obrazovka je tvořena pravidelně uspořádanými obrazovými buňkami v řádcích a sloupcích. Každá buňka obsahuje elektrody a vrstvu kapalného krystalu.\\
-Zěna napětí způsobí změnu natočení molekul a tím i změnu propustnosti polarizovaného světla.
+Změna napětí způsobí změnu natočení molekul krystalu a tím i změnu propustnosti polarizovaného světla.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Obrazky/TVT/3. otazka/LCD"}
@@ -677,7 +673,7 @@ Komprimace videa využívá podobné principy jako komprimace statických obraz�
 	\item Časová redundance vzniká podobností (korelací) jednotlivých snímků a k jejímu potlačení se používá \textbf{predikce}.
 	\item Techniky komprese videa:
 	\begin{itemize}
-		\item \textbf{BMA} (block amtching algorythm) - použití pohybových vektorů určujících jak
+		\item \textbf{BMA} (block matching algorythm) - použití pohybových vektorů určujících jak
 		se makrobloky 16x16 (8x8) přemístí mezi referenčním snímkem a
 		současným snímkem (za použití BMA) a kódování rozdílu obou snímků
 		pomocí DPCM
@@ -754,7 +750,7 @@ Komprimace videa využívá podobné principy jako komprimace statických obraz�
 	\item \textbf{MPEG-2} -určen pro televizní vysílání a umožňuje i standardní i vysoké rozlišení
 	\begin{itemize}
 		\item používá stejné operace jako u JPEG a MPEG-1
-		\item oproti MPEG-1 zpracovává signál i ve formátu 4:2:2 (makroblok složen ze 4 bloků signálu (16x16) a dvou dovjic bloků chrominančního signálu)
+		\item oproti MPEG-1 zpracovává signál i ve formátu 4:2:2 (makroblok složen ze 4 bloků signálu (16x16) a dvou dvojic bloků chrominančního signálu)
 		\item Navazuje na principy MPEG-1, ale rozšiřuje je o práci s prokládaným i neprokládaným obrazem, o složitější predikci
 		\item oproti MPEG-1 zpracovává signál s \textbf{neprokládaným i	prokládaným řádkováním} (rozšíření predikce)
 		\begin{itemize}
@@ -802,14 +798,6 @@ více viz výše: JPEG\\
 Využít statistické vlastnosti přenášených hodnot tak, aby často se vyskytující symboly měly krátké kódy a méně časté symboly kódy delší. Tím se sníží výsledná délka bitového toku bez další ztráty informace.
 
 
-
-
-
-
-
-
-
-
 \chapter{Šestá otázka}
 \section{Zdrojové kódování zvukových signálů}
 Podobně jako obrazový signál, obsahuje i zvukový signál redundanci a irelevanci.
@@ -832,13 +820,13 @@ Cílem zdrojového kódování je tuto rychlost výrazně snížit (na cca 200\,
 Člověk vnímá zvuk v pásmu přibližně 16\,Hz až 16\,kHz. Silnější složky zvuku mohou způsobit, že slabší složky nejsou sluchem vnímány -- tento jev se nazývá \textbf{maskovací jev}.
 
 \begin{itemize}
-    \item \textbf{Frekvenční maskování} -- při současném vnímání dvou zvukových signálů déle než 200\,ms může silnější signál potlačit slyšitelnost slabšího signálu na jiném kmitočtu. Závislost prahu slyšitelnosti na kmitočtu a úrovni maskujícího signálu popisují \textbf{křivky současné slyšitelnosti}.
-    \item \textbf{Časové maskování} -- maskování nastává i tehdy, když maskovaný signál přichází až do 10\,ms po ukončení maskujícího signálu (postmaskování), nebo do 5\,ms před jeho nástupem (premaskování). Po 200\,ms maskování zcela zaniká.
+    \item \textbf{Frekvenční maskování} -- při současném vnímání dvou zvukových signálů déle než 200\,ms může silnější signál potlačit slyšitelnost slabšího signálu na jiném kmitočtu. Závislost prahu slyšitelnosti na kmitočtu a úrovni maskujícího signálu popisují \textbf{křivky současné slyšitelnosti}. (Silný zvuk způsobí, že slabší zvuky na blízkých kmitočtech přestanou být pro člověka slyšet)
+    \item \textbf{Časové maskování} -- maskování nastává i tehdy, když maskovaný signál přichází až do 10\,ms po ukončení maskujícího signálu (postmaskování), nebo do 5\,ms před jeho nástupem (premaskování). Po 200\,ms maskování zcela zaniká. (krátký zvukový impulz maskuje slabé zvuky hned po jeho skončení i těsně před začátkem)
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{"Obrazky/TVT/6. otazka/prahy"}
+    \includegraphics[width=0.5\linewidth]{"Obrazky/TVT/6. otazka/prahy"}
     \caption{Prahy současné slyšitelnosti při frekvenčním maskování}
     \label{fig:prahy}
 \end{figure}
@@ -861,7 +849,7 @@ Psychoakustický model je součástí kodéru a modeluje psychoakustické vlastn
 
 \section{Komprimace audia -- principy MPEG}
 Využívá kombinaci bezeztrátového a ztrátového přístupu. Převádí zvukový signál do takové podoby, aby bylo možné odstranit redundanci a irelevanci s využitím psychoakustického modelu. Výsledkem je výrazné snížení datového toku při zachování dobré posluchačské kvality.\\
-Audio MPEG využívá: vzorkování, kvantování, psychoakustické vyhodnocení a následné entropické kódování. Cíl: přiřazení co nejvíce bitů těm částem spektra, které jsou pro vnímání nejdůležitější (složky, málo významné kvantovány hruběji).
+Audio MPEG využívá: vzorkování, kvantování, psychoakustické vyhodnocení a následné entropické kódování. Cíl: přiřazení co nejvíce bitů těm částem spektra, které jsou pro vnímání nejdůležitější (složky málo významné kvantovány hruběji).
 
 \subsection{Zvukový standard MPEG-1}
 \begin{itemize}
